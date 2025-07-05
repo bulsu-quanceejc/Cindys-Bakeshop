@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Users</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff8f0;
+      padding: 30px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #d2691e;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #eee;
+    }
+
+    th {
+      background-color: #f08080;
+      color: white;
+    }
+
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .btn-block {
+      background-color: #e53935;
+    }
+
+    .btn-unblock {
+      background-color: #43a047;
+    }
+
+    .status-active {
+      color: green;
+      font-weight: bold;
+    }
+
+    .status-blocked {
+      color: red;
+      font-weight: bold;
+    }
+
+    .reason {
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Manage Users</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Block Reason</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>U001</td>
+        <td>Jane Cruz</td>
+        <td>jane@example.com</td>
+        <td class="status-active">Active</td>
+        <td class="reason">—</td>
+        <td>
+          <button class="btn btn-block">Block</button>
+        </td>
+      </tr>
+      <tr>  
+        <td>U002</td>
+        <td>Mark Dela Peña</td>
+        <td>mark@example.com</td>
+        <td class="status-blocked">Blocked</td>
+        <td class="reason">Cancelled 3 orders without reason</td>
+        <td>
+          <button class="btn btn-unblock">Unblock</button>
+        </td>
+      </tr>
+      <tr>
+        <td>U003</td>
+        <td>Ana Reyes</td>
+        <td>ana@example.com</td>
+        <td class="status-active">Active</td>
+        <td class="reason">—</td>
+        <td>
+          <button class="btn btn-block">Block</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>

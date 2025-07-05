@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Manage Cancellations - Admin</title>
+  <style>
+    body { font-family: Arial; margin: 2rem; }
+    h2 { color: #b00020; }
+    .tabs button, .filters input, .filters button {
+      margin-right: 6px;
+      padding: 6px;
+    }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+    .badge.process { background: #ffc107; color: white; padding: 4px 8px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+
+  <h2>Manage Cancellations</h2>
+  <div class="tabs">
+    <button>All</button>
+    <button>To Process</button>
+    <button>Completed</button>
+  </div>
+  <div class="filters">
+    <input type="text" placeholder="Search Order ID" />
+    <input type="date" /> to <input type="date" />
+    <button>Export Cancellations</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Cancel ID</th>
+        <th>Order ID</th>
+        <th>Customer</th>
+        <th>Reason</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>#CAN-002</td>
+        <td>#ORD-015</td>
+        <td>Maria Lopez</td>
+        <td>Wrong item</td>
+        <td>2025-06-22</td>
+        <td><span class="badge process">To Process</span></td>
+        <td><button>Review</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .sidebar-link {
+      transition: background-color 0.2s, transform 0.2s;
+    }
+    .sidebar-link:hover {
+      background-color: #f3f4f6;
+      transform: translateX(2px);
+    }
+  </style>
+</head>
+<body class="bg-white">
+  <div class="flex h-screen overflow-hidden">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r border-gray-200 p-4">
+      <div class="text-center mb-6">
+        <img src="logo.png" alt="CINDY'S" class="mx-auto h-12">
+        <p class="text-sm text-red-600 font-semibold mt-2">Give your sweet tooth a treat</p>
+      </div>
+      <nav class="space-y-2 text-sm font-medium">
+        <a href="dashboard.html" class="flex items-center gap-2 p-2 bg-gray-200 rounded sidebar-link">
+          🏠 Dashboard
+        </a>
+        <a href="orders.html" class="flex items-center gap-2 p-2 rounded sidebar-link">
+          📦 Orders
+        </a>
+        <a href="products.html" class="flex items-center gap-2 p-2 rounded sidebar-link">
+          🛒 Products
+        </a>
+        <a href="users.html" class="flex items-center gap-2 p-2 rounded sidebar-link">
+          👥 Users
+        </a>
+        <a href="reports.html" class="flex items-center gap-2 p-2 rounded sidebar-link">
+          📈 Reports
+        </a>
+        <a href="finance.html" class="flex items-center gap-2 p-2 rounded sidebar-link">
+          💰 Finance
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 bg-gray-100">
+      <!-- Yellow Header -->
+      <div class="bg-yellow-400 p-4 flex justify-between items-center">
+        <!-- Stats Card -->
+        <div class="bg-white rounded-xl shadow px-6 py-3 flex gap-10 text-center text-sm items-center">
+          <a href="orders.html" class="hover:underline">
+            <div>
+              <div class="flex items-center justify-center gap-1 font-semibold text-gray-800">Orders <span>➡️</span></div>
+              <div class="text-lg font-bold">25</div>
+            </div>
+          </a>
+          <a href="returns.html" class="hover:underline">
+            <div>
+              <div class="font-semibold text-gray-800">Returns</div>
+              <div class="text-lg font-bold">0</div>
+            </div>
+          </a>
+          <a href="lowstock.html" class="hover:underline">
+            <div>
+              <div class="font-semibold text-gray-800">Low stock</div>
+              <div class="text-red-600 text-lg font-bold">19</div>
+              <div class="text-xs text-red-500">Out of stock: 19</div>
+            </div>
+          </a>
+          <a href="ratings.html" class="hover:underline">
+            <div>
+              <div class="font-semibold text-gray-800">Product Ratings</div>
+              <div class="text-lg font-bold">25</div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Bell + Avatar -->
+        <div class="flex items-center gap-4">
+          <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+          <img src="avatar.png" alt="User Avatar" class="h-10 w-10 rounded-full border border-gray-300" />
+        </div>
+      </div>
+
+      <!-- Dashboard Body -->
+      <section class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Sales Info -->
+        <div class="bg-white p-4 rounded shadow">
+          <div class="flex justify-between">
+            <h2 class="text-base font-bold">Sales</h2>
+            <span class="text-gray-500 text-sm">Today</span>
+          </div>
+          <div class="text-2xl font-bold text-green-600 mt-2">₱ 4,572.84</div>
+          <p class="text-sm text-gray-600">Orders: 25</p>
+        </div>
+
+        <!-- Payment Breakdown -->
+        <div class="bg-white p-4 rounded shadow">
+          <h2 class="text-base font-bold mb-2">Payment Method Breakdown</h2>
+          <canvas id="paymentChart" height="200"></canvas>
+        </div>
+
+        <!-- Monthly Sales Chart -->
+        <div class="bg-white p-4 rounded shadow md:col-span-2">
+          <h2 class="text-base font-bold mb-2">Monthly Total Sales (₱)</h2>
+          <canvas id="salesChart" height="200"></canvas>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Payment Pie Chart
+    new Chart(document.getElementById("paymentChart"), {
+      type: 'doughnut',
+      data: {
+        labels: ['Gcash', 'COD'],
+        datasets: [{
+          data: [60, 40],
+          backgroundColor: ['#00C49F', '#FF8042']
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
+    });
+
+    // Sales Bar Chart
+    new Chart(document.getElementById("salesChart"), {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Sales (₱)',
+          data: [1000, 1100, 950, 1200, 1300, 1250],
+          backgroundColor: '#6366F1',
+          borderRadius: 6,
+          barPercentage: 0.5
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: value => `₱${value}`
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

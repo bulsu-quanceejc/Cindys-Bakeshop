@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inventory Report</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff8f0;
+      margin: 0;
+      padding: 30px;
+    }
+
+    h2 {
+      color: #d2691e;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .report-actions {
+      text-align: right;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      margin-left: 10px;
+      background-color: #4caf50;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-export {
+      background-color: #f08080;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f08080;
+      color: white;
+    }
+
+    tr.low-stock {
+      background-color: #fff3f3;
+      color: #b22222;
+    }
+
+    .note {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Inventory Report</h2>
+
+<div class="report-actions">
+  <button class="btn btn-export" onclick="alert('Export feature coming soon!')">Export to CSV</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Category</th>
+      <th>Stock</th>
+      <th>Price (₱)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Rainbow Cake</td>
+      <td>Cakes</td>
+      <td>20</td>
+      <td>₱400.00</td>
+    </tr>
+    <tr class="low-stock">
+      <td>Choco Bun</td>
+      <td>Bread</td>
+      <td>3</td>
+      <td>₱25.00</td>
+    </tr>
+    <tr>
+      <td>Cheese Rolls</td>
+      <td>Pastries</td>
+      <td>18</td>
+      <td>₱30.00</td>
+    </tr>
+    <tr class="low-stock">
+      <td>Ube Loaf</td>
+      <td>Bread</td>
+      <td>5</td>
+      <td>₱35.00</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="note">🔴 Products with 5 or fewer stock are highlighted. Please restock immediately.</p>
+
+</body>
+</html>

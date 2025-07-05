@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Finance Charts - Admin</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background: #fff;
+      color: #333;
+    }
+
+    h2 {
+      color: #2f3e46;
+      margin-bottom: 1rem;
+    }
+
+    .charts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .chart-container {
+      flex: 1 1 400px;
+      padding: 1rem;
+      border-radius: 8px;
+      background: #f8f9fa;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    canvas {
+      max-width: 100%;
+      height: auto;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h2>Finance Charts</h2>
+
+  <div class="charts">
+    <!-- Monthly Sales Chart -->
+    <div class="chart-container">
+      <h3>Monthly Total Sales (₱)</h3>
+      <canvas id="salesChart"></canvas>
+    </div>
+
+    <!-- Payment Method Chart -->
+    <div class="chart-container">
+      <h3>Payment Method Breakdown</h3>
+      <canvas id="paymentChart"></canvas>
+    </div>
+  </div>
+
+  <script>
+    // Sales Chart
+    const salesChart = new Chart(document.getElementById('salesChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Sales (₱)',
+          data: [8200, 9500, 11000, 12500, 10800, 13200],
+          backgroundColor: '#4dabf7',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: value => '₱' + value
+            }
+          }
+        }
+      }
+    });
+
+    // Payment Method Chart
+    const paymentChart = new Chart(document.getElementById('paymentChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['COD', 'GCash'],
+        datasets: [{
+          label: 'Payment Method',
+          data: [18500, 23700], // example totals
+          backgroundColor: ['#ffa94d', '#69db7c']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

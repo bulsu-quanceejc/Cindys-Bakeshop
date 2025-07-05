@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Finance Transactions - Admin</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background: #fff;
+      color: #333;
+    }
+
+    h2 {
+      color: #2f3e46;
+      margin-bottom: 1rem;
+    }
+
+    .filter-bar {
+      margin-bottom: 1rem;
+    }
+
+    .filter-bar input,
+    .filter-bar select,
+    .filter-bar button {
+      padding: 6px;
+      margin-right: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .export-btn {
+      background-color: #4dabf7;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f8f9fa;
+    }
+
+    .badge-paid {
+      background-color: #51cf66;
+      color: white;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+
+    .badge-pending {
+      background-color: #ffa94d;
+      color: white;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+
+    .badge-refunded {
+      background-color: #ff6b6b;
+      color: white;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+
+    .badge-failed {
+      background-color: #adb5bd;
+      color: white;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+
+     .charts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .chart-container {
+    flex: 1 1 300px;
+    padding: 1rem;
+    border-radius: 8px;
+    background: #f8f9fa;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    max-width: 400px;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: 240px !important;
+  }
+
+  </style>
+</head>
+<body>
+
+  <h2>Finance - Transaction Records</h2>
+
+  <!-- 📊 CHART SECTION -->
+  <div class="charts">
+    <div class="chart-container">
+      <h3>Monthly Total Sales (₱)</h3>
+      <canvas id="salesChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <h3>Payment Method Breakdown</h3>
+      <canvas id="paymentChart"></canvas>
+    </div>
+  </div>
+
+  <!-- 🔍 FILTERS -->
+  <div class="filter-bar">
+    <input type="text" placeholder="Search Order ID or Ref. No" />
+    <select>
+      <option value="">All Payment Methods</option>
+      <option value="COD">Cash on Delivery</option>
+      <option value="GCash">GCash</option>
+    </select>
+    <select>
+      <option value="">All Status</option>
+      <option value="Paid">Paid</option>
+      <option value="Pending">Pending</option>
+      <option value="Refunded">Refunded</option>
+      <option value="Failed">Failed</option>
+    </select>
+    <input type="date" /> to <input type="date" />
+    <button class="export-btn">Export CSV</button>
+  </div>
+
+  <!-- 📄 TABLE -->
+  <table>
+    <thead>
+      <tr>
+        <th>Transaction ID</th>
+        <th>Order ID</th>
+        <th>Payment Method</th>
+        <th>Status</th>
+        <th>Payment Date</th>
+        <th>Amount Paid</th>
+        <th>Reference Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>TXN-0001</td>
+        <td>ORD-1025</td>
+        <td>COD</td>
+        <td><span class="badge-paid">Paid</span></td>
+        <td>2025-06-23</td>
+        <td>₱550.00</td>
+        <td>--</td>
+      </tr>
+      <tr>
+        <td>TXN-0002</td>
+        <td>ORD-1026</td>
+        <td>GCash</td>
+        <td><span class="badge-refunded">Refunded</span></td>
+        <td>2025-06-22</td>
+        <td>₱900.00</td>
+        <td>GC123456789</td>
+      </tr>
+      <tr>
+        <td>TXN-0003</td>
+        <td>ORD-1027</td>
+        <td>GCash</td>
+        <td><span class="badge-pending">Pending</span></td>
+        <td>2025-06-22</td>
+        <td>₱800.00</td>
+        <td>GC987654321</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 📊 CHART.JS SCRIPT -->
+  <script>
+    const salesChart = new Chart(document.getElementById('salesChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Sales (₱)',
+          data: [8200, 9500, 11000, 12500, 10800, 13200],
+          backgroundColor: '#4dabf7',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: value => '₱' + value
+            }
+          }
+        }
+      }
+    });
+
+    const paymentChart = new Chart(document.getElementById('paymentChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['COD', 'GCash'],
+        datasets: [{
+          data: [18500, 23700],
+          backgroundColor: ['#ffa94d', '#69db7c']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

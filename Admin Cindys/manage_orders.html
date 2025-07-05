@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Manage Orders - Admin</title>
+  <style>
+    body { font-family: Arial; margin: 2rem; }
+    h2 { color: #d6336c; }
+    .filters input, .filters button {
+      padding: 6px;
+      margin-right: 6px;
+    }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+    .badge.pending { background: orange; color: white; padding: 4px 8px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+
+  <h2>Manage Orders</h2>
+  <div class="filters">
+    <input type="text" placeholder="Search Order ID or Customer" />
+    <input type="date" /> to <input type="date" />
+    <button>Export Orders</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Customer</th>
+        <th>Date Ordered</th>
+        <th>Status</th>
+        <th>Total</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>#ORD-001</td>
+        <td>Juan Dela Cruz</td>
+        <td>2025-06-23</td>
+        <td><span class="badge pending">Pending</span></td>
+        <td>₱450.00</td>
+        <td><button>View</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>
