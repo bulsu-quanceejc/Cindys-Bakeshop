@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sales Report - Admin</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
@@ -12,88 +13,87 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       background-color: #f5f5f5;
     }
 
-    /* Sidebar */
     .sidebar {
       width: 220px;
       background-color: #fff;
       height: 100vh;
       border-right: 1px solid #ccc;
-      padding-top: 1rem;
-      position: fixed;
-      top: 0;
-      left: 0;
+      padding: 1rem;
     }
 
     .logo {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .logo img {
       width: 120px;
     }
 
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .sidebar li {
-      padding: 12px 20px;
-      cursor: pointer;
-    }
-
-    .sidebar li:hover,
-    .sidebar li.active {
-      background-color: #f0f0f0;
-    }
-
-    .dropdown-content {
-      display: none;
-      padding-left: 20px;
-    }
-
-    .dropdown-content li {
-      font-size: 0.95rem;
-      padding: 8px 20px;
-    }
-
-    .dropdown.open .dropdown-content {
-      display: block;
-    }
-
-    /* Main Content */
-    .main {
-      margin-left: 220px;
-      padding: 20px;
-      width: calc(100% - 220px);
-    }
-
-    .header {
-      background-color: #ffe600;
-      padding: 15px;
+    .sidebar nav {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.9rem;
     }
 
-    .header img {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 0.375rem;
+      color: #000;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      background-color: #f3f4f6;
+      transform: translateX(2px);
+    }
+
+    .submenu {
+      margin-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .main {
+      flex: 1;
+    }
+
+    .top-header {
+      background-color: #facc15;
+      height: 150px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      position: relative;
+    }
+
+    .avatar-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
     }
 
     .summary-cards {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
-      margin-bottom: 2rem;
+      margin: 1rem 2rem;
     }
 
     .card {
@@ -105,33 +105,15 @@
       text-align: center;
     }
 
-    .card h3 {
-      margin: 0;
-      font-size: 1rem;
-      color: #555;
-    }
-
-    .card p {
-      font-size: 1.4rem;
-      margin-top: 5px;
-      font-weight: bold;
-    }
-
-    .chart-container {
-      background: #fff;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      margin-bottom: 2rem;
+    .chart-container,
+    .filter-bar,
+    table {
+      margin: 1rem 2rem;
     }
 
     canvas {
       width: 100% !important;
       height: 240px !important;
-    }
-
-    .filter-bar {
-      margin-bottom: 1rem;
     }
 
     .filter-bar select,
@@ -152,7 +134,7 @@
     }
 
     table {
-      width: 100%;
+      width: calc(100% - 4rem);
       border-collapse: collapse;
       background-color: #fff;
       border-radius: 8px;
@@ -171,37 +153,56 @@
   </style>
 </head>
 <body>
-
-  <!-- Sidebar -->
   <div class="sidebar">
     <div class="logo">
       <img src="https://i.imgur.com/N7rlQYt.png" alt="Cindy's Logo" />
+      <p class="text-sm text-red-600 font-semibold mt-2">Give your sweet tooth a treat</p>
     </div>
-    <ul>
-      <li>Dashboard</li>
-      <li>Orders</li>
-      <li>Products</li>
-      <li>Users</li>
-      <li class="dropdown" onclick="toggleDropdown(this)">
-        Reports
-        <ul class="dropdown-content">
-          <li class="active">Sales Report</li>
-          <li>Inventory Report</li>
-        </ul>
-      </li>
-      <li>Finance</li>
-    </ul>
+    <nav>
+      <a href="admin_dash.html">🏠 Dashboard</a>
+
+      <div class="dropdown">
+        <a href="#" onclick="toggleMenu(event, 'ordersSubmenu')">📦 Orders </a>
+        <div id="ordersSubmenu" class="submenu hidden">
+          <a href="orders.html"> Manage Orders</a>
+          <a href="orders.html"> Manage Cancellation</a>
+          <a href="orders.html">Manage Refund</a>
+        </div>
+      </div>
+
+      <a href="products.html">🛒 Products</a>
+      <a href="users.html">👥 Users</a>
+      <a href="reports.html">📈 Reports</a>
+      <a href="finance.html">💰 Finance</a>
+    </nav>
   </div>
 
-  <!-- Main Content -->
   <div class="main">
-    <div class="header">
-      <h2>Sales Report</h2>
-      <img src="https://i.imgur.com/1Q2Z1ZL.png" alt="User" />
+    <div class="top-header">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-800">Sales Report</h1>
+        <p class="text-sm text-gray-700 mt-1">Overview of store sales performance</p>
+      </div>
+      <div class="avatar-wrapper">
+        <div class="relative">
+          <button onclick="toggleNotificationDropdown()" class="relative focus:outline-none">
+            <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+            <span class="absolute top-0 right-0 block h-2 w-2 bg-red-600 rounded-full"></span>
+          </button>
+          <div id="notificationDropdown" class="hidden absolute right-0 mt-2 w-64 bg-white rounded shadow-lg z-50">
+            <div class="p-3 border-b font-semibold text-gray-700">Notifications</div>
+            <ul class="max-h-60 overflow-y-auto text-sm" id="notifList"></ul>
+          </div>
+        </div>
+        <img src="https://i.imgur.com/1Q2Z1ZL.png" alt="User" class="h-10 w-10 rounded-full border border-gray-300" />
+      </div>
     </div>
 
     <div class="filter-bar">
       <select>
+        <option>Today</option>
         <option>Last 7 days</option>
         <option>Last 30 days</option>
         <option>This Month</option>
@@ -209,7 +210,6 @@
       <button class="export-btn" onclick="exportTableToCSV()">Export CSV</button>
     </div>
 
-    <!-- Summary Cards -->
     <div class="summary-cards">
       <div class="card">
         <h3>Total Sales</h3>
@@ -229,13 +229,11 @@
       </div>
     </div>
 
-    <!-- Chart -->
     <div class="chart-container">
       <h3>Monthly Sales Chart</h3>
       <canvas id="salesChart"></canvas>
     </div>
 
-    <!-- Orders Table -->
     <table id="salesTable">
       <thead>
         <tr>
@@ -271,9 +269,38 @@
     </table>
   </div>
 
-  <!-- Chart & Function Scripts -->
   <script>
-    // Chart.js
+    function toggleNotificationDropdown() {
+      document.getElementById('notificationDropdown').classList.toggle('hidden');
+    }
+
+    function toggleMenu(event, id) {
+      event.preventDefault();
+      document.getElementById(id).classList.toggle('hidden');
+    }
+
+    window.addEventListener('click', function (e) {
+      const bell = document.querySelector('button[onclick="toggleNotificationDropdown()"]');
+      const dropdown = document.getElementById('notificationDropdown');
+      if (!bell.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.add('hidden');
+      }
+    });
+
+    const notifications = [
+      "⚠️ Low Stock: Chocolate Cake (2 left)",
+      "🛒 New Order #1245 from Bulacan",
+      "💬 New customer feedback received"
+    ];
+
+    const notifList = document.getElementById("notifList");
+    notifications.forEach(note => {
+      const li = document.createElement("li");
+      li.className = "px-4 py-2 hover:bg-gray-100 cursor-pointer";
+      li.textContent = note;
+      notifList.appendChild(li);
+    });
+
     const ctx = document.getElementById('salesChart').getContext('2d');
     const salesChart = new Chart(ctx, {
       type: 'bar',
@@ -299,12 +326,6 @@
       }
     });
 
-    // Dropdown toggle
-    function toggleDropdown(el) {
-      el.classList.toggle("open");
-    }
-
-    // Export CSV
     function exportTableToCSV() {
       const table = document.getElementById("salesTable");
       let csv = [];
@@ -312,7 +333,6 @@
         let cols = Array.from(row.cells).map(cell => `"${cell.innerText}"`);
         csv.push(cols.join(","));
       }
-
       const csvContent = "data:text/csv;charset=utf-8," + csv.join("\n");
       const link = document.createElement("a");
       link.setAttribute("href", csvContent);
