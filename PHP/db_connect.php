@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';      
-$db   = 'your_database';  
+$db   = 'cindysdb';  
 $user = 'root';           
 $pass = '';               
 $charset = 'utf8mb4';
