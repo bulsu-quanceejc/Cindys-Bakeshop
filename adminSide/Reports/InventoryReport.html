@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inventory Report</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+    }
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background-color: #fff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      border-right: 1px solid #ccc;
+    }
+
+    .sidebar nav {
+      padding: 20px;
+    }
+
+    .sidebar nav a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: #333;
+      border-radius: 5px;
+      margin-bottom: 5px;
+    }
+
+    .sidebar nav a:hover {
+      background-color: #eee;
+    }
+
+    .sidebar nav .active {
+      background-color: #d1fae5;
+      font-weight: bold;
+    }
+
+    .main {
+      margin-left: 250px;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .topbar {
+      background-color: #ffe600;
+      padding: 15px 20px;
+      font-weight: bold;
+      font-size: 18px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    h2 {
+      margin: 30px 0 10px;
+    }
+
+    .search-bar {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 8px 15px;
+      background-color: #ffe600;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      margin-left: 10px;
+      border-radius: 5px;
+    }
+
+    table {
+      width: 100%;
+      background-color: #fff;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #ffe600;
+    }
+
+    .stock-low {
+      background-color: #ffe5e5;
+      color: red;
+      font-weight: bold;
+    }
+
+    .stock-medium {
+      background-color: #fff9db;
+      color: #ff9800;
+    }
+
+    .stock-ok {
+      background-color: #e8f5e9;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div style="text-align:center; padding: 20px;">
+      <img src="your-logo.png" alt="Cindy's Logo" style="height: 50px;">
+    </div>
+    <nav>
+      <a href="#">🏠 Dashboard</a>
+      <a href="#">📦 Orders</a>
+      <a href="#">🛒 Products</a>
+      <a href="#">👥 Users</a>
+      <div style="margin-top: 20px; font-weight: bold;">📊 Reports</div>
+      <a href="#" style="margin-left: 10px;">Sales Report</a>
+      <a href="#" class="active" style="margin-left: 10px;">Inventory Report</a>
+      <a href="#" style="margin-top: 20px;">💰 Finance</a>
+    </nav>
+  </div>
+
+  <!-- Main content -->
+  <div class="main">
+    <div class="topbar">Inventory Report</div>
+    <div class="content">
+      
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search product..." onkeyup="filterInventory()">
+        <button onclick="exportToPDF()">📄 Export to PDF</button>
+      </div>
+
+      <!-- INVENTORY TABLES -->
+      <div id="inventoryContainer">
+
+        <!-- Bread Section -->
+        <h2>Bread</h2>
+        <table class="inventory-table">
+          <thead><tr><th>Item Name</th><th>Stock</th></tr></thead>
+          <tbody>
+            <tr><td>Taisan Soft Cake</td><td class="stock">0</td></tr>
+            <tr><td>Ubeng Ube Loaf</td><td class="stock">5</td></tr>
+            <tr><td>Pandecoconut</td><td class="stock">12</td></tr>
+            <tr><td>Pande esapana</td><td class="stock">8</td></tr>
+            <tr><td>Ube Cheese Pandesal</td><td class="stock">15</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Pastry Section -->
+        <h2>Pastry</h2>
+        <table class="inventory-table">
+          <thead><tr><th>Item Name</th><th>Stock</th></tr></thead>
+          <tbody>
+            <tr><td>Egg Pie Leche Plan</td><td class="stock">0</td></tr>
+            <tr><td>Brownie Bites</td><td class="stock">3</td></tr>
+            <tr><td>Custard Surprise</td><td class="stock">9</td></tr>
+            <tr><td>Ensaymada Ube</td><td class="stock">11</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Cake Section -->
+        <h2>Cakes</h2>
+        <table class="inventory-table">
+          <thead><tr><th>Item Name</th><th>Stock</th></tr></thead>
+          <tbody>
+            <tr><td>Choco Cherry Cake</td><td class="stock">0</td></tr>
+            <tr><td>Creamy Choco Cake</td><td class="stock">2</td></tr>
+            <tr><td>Chocolate Cake</td><td class="stock">10</td></tr>
+            <tr><td>Moist Cake</td><td class="stock">14</td></tr>
+            <tr><td>Unicorn Cake</td><td class="stock">4</td></tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- PDF Export Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function filterInventory() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const rows = document.querySelectorAll('#inventoryContainer table tbody tr');
+      rows.forEach(row => {
+        const item = row.cells[0].innerText.toLowerCase();
+        row.style.display = item.includes(input) ? '' : 'none';
+      });
+    }
+
+    function updateStockColors() {
+      document.querySelectorAll('.stock').forEach(td => {
+        const stock = parseInt(td.innerText);
+        td.classList.remove('stock-low', 'stock-medium', 'stock-ok');
+        if (stock === 0) td.classList.add('stock-low');
+        else if (stock < 10) td.classList.add('stock-medium');
+        else td.classList.add('stock-ok');
+      });
+    }
+
+    // Call once when page loads
+    updateStockColors();
+
+    async function exportToPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.text("Inventory Report", 20, 20);
+      let y = 30;
+
+      document.querySelectorAll("#inventoryContainer h2").forEach(section => {
+        doc.setFontSize(14);
+        doc.text(section.innerText, 20, y);
+        y += 10;
+
+        const rows = section.nextElementSibling.querySelectorAll("tbody tr");
+        rows.forEach(row => {
+          const name = row.cells[0].innerText;
+          const stock = row.cells[1].innerText;
+          doc.setFontSize(12);
+          doc.text(`- ${name}: ${stock}`, 25, y);
+          y += 7;
+        });
+        y += 5;
+      });
+
+      doc.save("Inventory_Report.pdf");
+    }
+  </script>
+
+</body>
+</html>
