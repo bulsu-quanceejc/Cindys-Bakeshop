@@ -66,9 +66,9 @@
     <div class="menu">
       <a href="javascript:void(0)" onclick="toggleMenu(this)" class="flex items-center gap-2 p-2 rounded sidebar-link">📦 Orders</a>
       <div class="submenu hidden ml-6 space-y-1">
-        <a href="orders.html" class="block p-2 hover:bg-gray-100 rounded">Manage Orders</a>
-        <a href="cancellations.html" class="block p-2 hover:bg-gray-100 rounded">Manage Cancellations</a>
-        <a href="refunds.html" class="block p-2 hover:bg-gray-100 rounded">Manage Refunds</a>
+        <a href="../ORDERS/ManageOrders.html" class="block p-2 hover:bg-gray-100 rounded">Manage Orders</a>
+        <a href="../ORDERS/ManageCancel.html" class="block p-2 hover:bg-gray-100 rounded">Manage Cancellations</a>
+        <a href="../ORDERS/ManageRefund.html" class="block p-2 hover:bg-gray-100 rounded">Manage Refunds</a>
       </div>
     </div>
 
@@ -76,19 +76,20 @@
     <div class="menu">
       <a href="javascript:void(0)" onclick="toggleMenu(this)" class="flex items-center gap-2 p-2 rounded sidebar-link">🛒 Products</a>
       <div class="submenu hidden ml-6 space-y-1">
-        <a href="products.html" class="block p-2 hover:bg-gray-100 rounded">Manage Products</a>
+        <a href="../products/ManageProduct.html" class="block p-2 hover:bg-gray-100 rounded">Manage Products</a>
+            <a href="../dashboard/Ratings.html" class="flex items-center gap-2 p-2 rounded sidebar-link">⭐ Product Ratings</a>
       </div>
     </div>
 
-    <a href="ratings.html" class="flex items-center gap-2 p-2 rounded sidebar-link">⭐ Product Ratings</a>
-    <a href="users.html" class="flex items-center gap-2 p-2 rounded sidebar-link">👥 Users</a>
+
+    <a href="user.html" class="flex items-center gap-2 p-2 rounded sidebar-link">👥 Users</a>
 
     <!-- Reports -->
     <div class="menu">
       <a href="javascript:void(0)" onclick="toggleMenu(this)" class="flex items-center gap-2 p-2 rounded sidebar-link">📈 Reports</a>
       <div class="submenu hidden ml-6 space-y-1">
-        <a href="sales_report.html" class="block p-2 hover:bg-gray-100 rounded">Sales Report</a>
-        <a href="inventory_report.html" class="block p-2 hover:bg-gray-100 rounded">Inventory Report</a>
+        <a href="../Reports/SalesReport.html" class="block p-2 hover:bg-gray-100 rounded">Sales Report</a>
+        <a href="../Reports/InventoryReport.html" class="block p-2 hover:bg-gray-100 rounded">Inventory Report</a>
       </div>
     </div>
 
@@ -112,20 +113,20 @@
       <div class="top-header">
         <!-- Stat Summary Box -->
         <div class="header-stats-container">
-          <a href="orders.html" class="text-center hover:underline">
+          <a href="../ORDERS/ManageOrders.html" class="text-center hover:underline">
             <div class="font-semibold text-gray-800">Orders </div>
             <div class="text-lg font-bold">25</div>
           </a>
-          <a href="returns.html" class="text-center hover:underline">
-            <div class="font-semibold text-gray-800">Returns</div>
+          <a href="../ORDERS/ManageRefund.html" class="text-center hover:underline">
+            <div class="font-semibold text-gray-800">Refund</div>
             <div class="text-lg font-bold">0</div>
           </a>
-          <a href="lowstock.html" class="text-center hover:underline">
+          <a href="../Reports/InventoryReport.html" class="text-center hover:underline">
             <div class="font-semibold text-gray-800">Low Stock</div>
             <div class="text-red-600 font-bold text-lg">19</div>
             <div class="text-xs text-red-500">Out of stock: 19</div>
           </a>
-          <a href="ratings.html" class="text-center hover:underline">
+          <a href="Ratings.html" class="text-center hover:underline">
             <div class="font-semibold text-gray-800">Product Ratings</div>
             <div class="text-lg font-bold">25</div>
           </a>

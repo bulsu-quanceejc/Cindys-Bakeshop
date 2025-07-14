@@ -108,26 +108,37 @@
       background-color: #ffe600;
     }
 
-    .stock-low {
-      background-color: #ffe5e5;
-      color: red;
+    .stock input {
+      border: none;
+      width: 100%;
+      background: transparent;
+      outline: none;
       font-weight: bold;
     }
 
-    .stock-medium {
+    .stock-low input {
+      background-color: #ffe5e5;
+      color: red;
+    }
+
+    .stock-medium input {
       background-color: #fff9db;
       color: #ff9800;
     }
 
-    .stock-ok {
+    .stock-ok input {
       background-color: #e8f5e9;
       color: green;
+    }
+
+    .stock-preorder input {
+      background-color: #e0f2ff;
+      color: blue;
+      font-style: italic;
     }
   </style>
 </head>
 <body>
-
-  <!-- Sidebar -->
   <div class="sidebar">
     <div style="text-align:center; padding: 20px;">
       <img src="your-logo.png" alt="Cindy's Logo" style="height: 50px;">
@@ -144,64 +155,96 @@
     </nav>
   </div>
 
-  <!-- Main content -->
   <div class="main">
     <div class="topbar">Inventory Report</div>
     <div class="content">
-      
       <div class="search-bar">
         <input type="text" id="searchInput" placeholder="Search product..." onkeyup="filterInventory()">
         <button onclick="exportToPDF()">📄 Export to PDF</button>
       </div>
 
-      <!-- INVENTORY TABLES -->
       <div id="inventoryContainer">
-
-        <!-- Bread Section -->
-        <h2>Bread</h2>
-        <table class="inventory-table">
-          <thead><tr><th>Item Name</th><th>Stock</th></tr></thead>
-          <tbody>
-            <tr><td>Taisan Soft Cake</td><td class="stock">0</td></tr>
-            <tr><td>Ubeng Ube Loaf</td><td class="stock">5</td></tr>
-            <tr><td>Pandecoconut</td><td class="stock">12</td></tr>
-            <tr><td>Pande esapana</td><td class="stock">8</td></tr>
-            <tr><td>Ube Cheese Pandesal</td><td class="stock">15</td></tr>
-          </tbody>
-        </table>
-
-        <!-- Pastry Section -->
-        <h2>Pastry</h2>
-        <table class="inventory-table">
-          <thead><tr><th>Item Name</th><th>Stock</th></tr></thead>
-          <tbody>
-            <tr><td>Egg Pie Leche Plan</td><td class="stock">0</td></tr>
-            <tr><td>Brownie Bites</td><td class="stock">3</td></tr>
-            <tr><td>Custard Surprise</td><td class="stock">9</td></tr>
-            <tr><td>Ensaymada Ube</td><td class="stock">11</td></tr>
-          </tbody>
-        </table>
-
-        <!-- Cake Section -->
-        <h2>Cakes</h2>
-        <table class="inventory-table">
-          <thead><tr><th>Item Name</th><th>Stock</th></tr></thead>
-          <tbody>
-            <tr><td>Choco Cherry Cake</td><td class="stock">0</td></tr>
-            <tr><td>Creamy Choco Cake</td><td class="stock">2</td></tr>
-            <tr><td>Chocolate Cake</td><td class="stock">10</td></tr>
-            <tr><td>Moist Cake</td><td class="stock">14</td></tr>
-            <tr><td>Unicorn Cake</td><td class="stock">4</td></tr>
-          </tbody>
-        </table>
-
+        <!-- Tables inserted here by script -->
       </div>
     </div>
   </div>
 
-  <!-- PDF Export Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
+    const inventoryData = {
+      Bread: [
+        ["Taisan Soft Cake", 0], ["Ubeng Ube Loaf", 5], ["Pandecoconut", 12],
+        ["Pande esapana", 8], ["Mamon Cup", 10], ["Delightful Treats Choco", 7],
+        ["Crinkles Cokie", 6], ["Pinoy Tasty", 15], ["Jumbo Sandwich Loaf", 6],
+        ["Wheat Bread", 5]
+      ],
+      Pastry: [
+        ["Egg Pie Leche Plan", 0], ["Brownie Bites", 3], ["Custard Surprise", 9],
+        ["Cluster Ensaymada Ube with Cheese", 11], ["Mini Cinamon Roll", 5],
+        ["Ensaymada Cheese", 10], ["Snap n’ roll", 8], ["Cheesy Ensaymada", 9],
+        ["Egg pie caramel", 14], ["Cheesy Butter Softy", 18], ["Mamon", 6],
+        ["Choco Bar", 7], ["Ensaymada Ube", 11]
+      ],
+      Cakes: [
+        ["Choco Cherry Cake", 0], ["Creamy Choco Cake", 2], ["Chocolate Cake", 10],
+        ["Moist Cake", 14], ["Pastel Delight Round Cake", 9],
+        ["Mocha Celebration Cake Round", 8], ["Junior Cake, Ube Temptation", 9],
+        ["Choco Celebration On Cake Round", 7], ["Yema Round Celebration On Cake", 9],
+        ["Choco Caramel Cake", 7], ["Mocha Celebration On Cake Rectangle", 6],
+        ["Ube Macapuno Cake", 6], ["Yema Rectangle Celebration On Cake", 4],
+        ["Roll Choco Fudge", 8], ["Roll, Ube Macapuno", 14],
+        ["Roll, Nutty Caramel Cake", 18], ["Junior Cake, Mango Cream Deluxe", 12],
+        ["Choco Celebration On Cake Rectangle", 13],
+        ["Butterfly Sanctuary", null], ["Beauty Cake", null], ["Space Adventure", null],
+        ["Glitz’n Glam Cake", null], ["Flamingo Cake", null], ["Enchanted Cake", null],
+        ["Candy Drizzle Cake", null], ["Cat Castle Cake", null], ["Peppa Cake", null],
+        ["Ice Cream Heaven Cake", null], ["Rainbow Unicorn", null], ["Princess Cake", null],
+        ["Blooming Flower Cake", null], ["Elephant Cake", null], ["Racers Cake", null],
+        ["Detective Cake", null], ["Nautical Cake", null], ["Sea Adventure Cake", null],
+        ["Jungle Explore Cake", null], ["Nursery Cake", null], ["Spider Web Cake", null],
+        ["Unicorn Cake", null], ["Sonic Speed Cake", null], ["Minecraft Kindom Cake", null],
+        ["Build The Party", null]
+      ]
+    };
+
+    function buildInventoryTables() {
+      const container = document.getElementById("inventoryContainer");
+      container.innerHTML = "";
+      for (let category in inventoryData) {
+        const section = document.createElement("div");
+        section.innerHTML = `<h2>${category}</h2><table class="inventory-table"><thead><tr><th>Item Name</th><th>Stock</th></tr></thead><tbody></tbody></table>`;
+        const tbody = section.querySelector("tbody");
+        inventoryData[category].forEach(([name, stock]) => {
+          const tr = document.createElement("tr");
+          const tdName = `<td>${name}</td>`;
+          const tdStock = `<td class="stock"><input type="text" value="${stock ?? ''}" /></td>`;
+          tr.innerHTML = tdName + tdStock;
+          tbody.appendChild(tr);
+        });
+        container.appendChild(section);
+      }
+    }
+
+    function updateStockColors() {
+      document.querySelectorAll('.stock input').forEach(input => {
+        const td = input.parentElement;
+        td.className = 'stock';
+        const value = input.value.trim();
+
+        if (value === "") {
+          input.value = "Pre-order";
+          td.classList.add('stock-preorder');
+          input.classList.add('text-blue-600');
+        } else {
+          const stock = parseInt(value);
+          input.classList.remove('text-blue-600');
+          if (stock === 0) td.classList.add('stock-low');
+          else if (stock < 10) td.classList.add('stock-medium');
+          else td.classList.add('stock-ok');
+        }
+      });
+    }
+
     function filterInventory() {
       const input = document.getElementById('searchInput').value.toLowerCase();
       const rows = document.querySelectorAll('#inventoryContainer table tbody tr');
@@ -210,19 +253,6 @@
         row.style.display = item.includes(input) ? '' : 'none';
       });
     }
-
-    function updateStockColors() {
-      document.querySelectorAll('.stock').forEach(td => {
-        const stock = parseInt(td.innerText);
-        td.classList.remove('stock-low', 'stock-medium', 'stock-ok');
-        if (stock === 0) td.classList.add('stock-low');
-        else if (stock < 10) td.classList.add('stock-medium');
-        else td.classList.add('stock-ok');
-      });
-    }
-
-    // Call once when page loads
-    updateStockColors();
 
     async function exportToPDF() {
       const { jsPDF } = window.jspdf;
@@ -238,7 +268,7 @@
         const rows = section.nextElementSibling.querySelectorAll("tbody tr");
         rows.forEach(row => {
           const name = row.cells[0].innerText;
-          const stock = row.cells[1].innerText;
+          const stock = row.cells[1].querySelector("input").value;
           doc.setFontSize(12);
           doc.text(`- ${name}: ${stock}`, 25, y);
           y += 7;
@@ -248,7 +278,14 @@
 
       doc.save("Inventory_Report.pdf");
     }
-  </script>
 
+    window.onload = () => {
+      buildInventoryTables();
+      updateStockColors();
+      document.querySelectorAll('.stock input').forEach(input => {
+        input.addEventListener('input', updateStockColors);
+      });
+    };
+  </script>
 </body>
 </html>

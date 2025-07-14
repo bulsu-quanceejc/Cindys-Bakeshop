@@ -168,15 +168,10 @@
       cursor: pointer;
     }
 
-    /* Arrow for menu toggle */
-    .menu-toggle::after {
-      content: ' ▼';
-      float: right;
-    }
-
-    .menu.open .menu-toggle::after {
-      content: ' ▲';
-    }
+   
+a.btn-add {
+  text-decoration: none;
+}
 
   </style>
 </head>
@@ -188,37 +183,38 @@
     <img src="your-logo.png" alt="Cindy's Logo">
   </div>
   <nav>
-    <div class="menu"><a href="#">🏠 Dashboard</a></div>
+    <div class="menu"><a href="../dashboard/admin_dash.html">🏠 Dashboard</a></div>
 
     <div class="menu">
       <a href="javascript:void(0)" class="menu-toggle">📦 Orders</a>
       <div class="submenu">
-        <a href="#">Manage Orders</a>
-        <a href="#">Manage Cancellations</a>
-        <a href="#">Manage Refunds</a>
+        <a href="../ORDERS/ManageOrders.html">Manage Orders</a>
+        <a href="../ORDERS/ManageCancel.html">Manage Cancellations</a>
+        <a href="../ORDERS/ManageRefund.html">Manage Refunds</a>
       </div>
     </div>
 
     <div class="menu open">
       <a href="javascript:void(0)" class="menu-toggle">🛒 Products</a>
       <div class="submenu">
-        <a href="#" class="active">Manage Products</a>
+        <a href="../products/ManageProduct.html" class="active">Manage Products</a>
+       <a href="../dashboard/Ratings.html" class="active">⭐ Product Ratings</a>
       </div>
     </div>
 
-    <div class="menu"><a href="#">⭐ Product Ratings</a></div>
+    
 
-    <div class="menu"><a href="#">👥 Users</a></div>
+    <div class="menu"><a href="../dashboard/user.html">👥 Users</a></div>
 
     <div class="menu">
       <a href="javascript:void(0)" class="menu-toggle">📊 Reports</a>
       <div class="submenu">
-        <a href="#">Sales Report</a>
-        <a href="#">Inventory Report</a>
+        <a href="../Reports/SalesReport.html">Sales Report</a>
+        <a href="../Reports/InventoryReport.html">Inventory Report</a>
       </div>
     </div>
 
-    <div class="menu"><a href="#">💰 Finance</a></div>
+    <div class="menu"><a href="../dashboard/finance.html">💰 Finance</a></div>
   </nav>
 </div>
 
@@ -227,17 +223,19 @@
   <div class="topbar">Manage Products</div>
   <div class="content">
 
-    <!-- Toolbar -->
-    <div class="toolbar">
-      <input type="text" id="search" placeholder="Search product name...">
-      <select id="category">
-        <option value="">All Categories</option>
-        <option value="Cake">Cake</option>
-        <option value="Bread">Bread</option>
-        <option value="Pastry">Pastry</option>
-      </select>
-      <button class="btn-add">➕ Add New Product</button>
-    </div>
+  <!-- Inside toolbar -->
+<div class="toolbar">
+  <input type="text" id="search" placeholder="Search product name...">
+  <select id="category">
+    <option value="">All Categories</option>
+    <option value="Cake">Cake</option>
+    <option value="Bread">Bread</option>
+    <option value="Pastry">Pastry</option>
+  </select>
+  <a href="AddNewProduct.html" class="btn-add" style="text-decoration: none;">➕ Add New Product</a>
+
+</div>
+
 
     <!-- Product Cards -->
     <div class="product-grid" id="productGrid">
