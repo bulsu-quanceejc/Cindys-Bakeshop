@@ -6,11 +6,7 @@
   <title>Sales Report - Admin</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -175,15 +171,26 @@
 
       <a href="javascript:void(0)" onclick="toggleMenu('ordersSubmenu')">📦 Orders</a>
       <div class="submenu" id="ordersSubmenu">
-        <a href="orders.html">Manage Orders</a>
-        <a href="cancellations.html">Manage Cancellation</a>
-        <a href="refunds.html">Manage Refund</a>
+        <a href="../ORDERS/ManageOrders.html">Manage Orders</a>
+        <a href="../ORDERS/ManageCancel.html">Manage Cancellation</a>
+        <a href="../ORDERS/ManageRefund.html">Manage Refund</a>
       </div>
 
-      <a href="products.html">🛒 Products</a>
-      <a href="users.html">👥 Users</a>
-      <a href="reports.html">📈 Reports</a>
-      <a href="finance.html">💰 Finance</a>
+      <a href="javascript:void(0)" onclick="toggleMenu('productsSubmenu')">🛒 Products</a>
+      <div class="submenu" id="productsSubmenu">
+        <a href="../products/ManageProduct.html">Manage Products</a>
+        <a href="../dashboard/Ratings.html">Product Ratings</a>
+      </div>
+
+      <a href="../dashboard/user.html">👥 Users</a>
+
+      <a href="javascript:void(0)" onclick="toggleMenu('reportsSubmenu')">📈 Reports</a>
+      <div class="submenu" id="reportsSubmenu">
+        <a href="../Reports/SalesReport.html">Sales Report</a>
+        <a href="../Reports/InventoryReport.html">Inventory Report</a>
+      </div>
+
+      <a href="../dashboard/finance.html">💰 Finance</a>
     </nav>
   </div>
 
@@ -198,7 +205,8 @@
         <div class="relative">
           <button onclick="toggleNotificationDropdown()" class="relative focus:outline-none">
             <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
             </svg>
             <span class="absolute top-0 right-0 block h-2 w-2 bg-red-600 rounded-full"></span>
           </button>

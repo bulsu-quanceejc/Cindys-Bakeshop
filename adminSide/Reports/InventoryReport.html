@@ -13,45 +13,78 @@
 
     body {
       font-family: Arial, sans-serif;
+      display: flex;
       background-color: #f3f3f3;
     }
 
     .sidebar {
-      width: 250px;
+      width: 240px;
+      background-color: #ffffff;
       height: 100vh;
-      background-color: #fff;
+      border-right: 1px solid #ddd;
+      padding: 1rem;
+      overflow-y: auto;
       position: fixed;
-      top: 0;
       left: 0;
-      border-right: 1px solid #ccc;
+      top: 0;
+    }
+
+    .sidebar .logo {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .sidebar .logo img {
+      height: 48px;
+    }
+
+    .sidebar .logo p {
+      font-size: 0.85rem;
+      color: #dc2626;
+      font-weight: bold;
+      margin-top: 0.3rem;
     }
 
     .sidebar nav {
-      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.95rem;
     }
 
-    .sidebar nav a {
-      display: block;
-      padding: 10px;
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem;
       text-decoration: none;
-      color: #333;
-      border-radius: 5px;
-      margin-bottom: 5px;
+      color: #000;
+      border-radius: 6px;
+      transition: 0.2s ease;
     }
 
-    .sidebar nav a:hover {
-      background-color: #eee;
+    .sidebar a:hover {
+      background-color: #f3f4f6;
     }
 
-    .sidebar nav .active {
-      background-color: #d1fae5;
-      font-weight: bold;
+    .submenu {
+      margin-left: 1.5rem;
+      display: none;
+      flex-direction: column;
+    }
+
+    .submenu a {
+      padding: 0.3rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .submenu a:hover {
+      background-color: #e5e7eb;
     }
 
     .main {
-      margin-left: 250px;
-      height: 100vh;
-      overflow-y: auto;
+      margin-left: 240px;
+      width: calc(100% - 240px);
     }
 
     .topbar {
@@ -139,22 +172,40 @@
   </style>
 </head>
 <body>
+  <!-- Sidebar -->
   <div class="sidebar">
-    <div style="text-align:center; padding: 20px;">
-      <img src="your-logo.png" alt="Cindy's Logo" style="height: 50px;">
+    <div class="logo">
+      <img src="your-logo.png" alt="Cindy's Logo" />
+      <p>Give your sweet tooth a treat</p>
     </div>
     <nav>
-      <a href="#">🏠 Dashboard</a>
-      <a href="#">📦 Orders</a>
-      <a href="#">🛒 Products</a>
-      <a href="#">👥 Users</a>
-      <div style="margin-top: 20px; font-weight: bold;">📊 Reports</div>
-      <a href="#" style="margin-left: 10px;">Sales Report</a>
-      <a href="#" class="active" style="margin-left: 10px;">Inventory Report</a>
-      <a href="#" style="margin-top: 20px;">💰 Finance</a>
+      <a href="../dashboard/admin_dash.html">🏠 Dashboard</a>
+      <a href="javascript:void(0)" onclick="toggleMenu('ordersSubmenu')">📦 Orders</a>
+      <div class="submenu" id="ordersSubmenu">
+        <a href="../ORDERS/ManageOrders.html">Manage Orders</a>
+        <a href="../ORDERS/ManageCancel.html">Manage Cancellation</a>
+        <a href="../ORDERS/ManageRefund.html">Manage Refund</a>
+      </div>
+
+      <a href="javascript:void(0)" onclick="toggleMenu('productsSubmenu')">🛒 Products</a>
+      <div class="submenu" id="productsSubmenu">
+        <a href="../products/ManageProduct.html">Manage Products</a>
+        <a href="../dashboard/Ratings.html">Product Ratings</a>
+      </div>
+
+      <a href="users.html">👥 Users</a>
+
+      <a href="javascript:void(0)" onclick="toggleMenu('reportsSubmenu')">📈 Reports</a>
+      <div class="submenu" id="reportsSubmenu">
+        <a href="../Reports/SalesReport.html">Sales Report</a>
+        <a href="../Reports/InventoryReport.html" class="active">Inventory Report</a>
+      </div>
+
+      <a href="finance.html">💰 Finance</a>
     </nav>
   </div>
 
+  <!-- Main -->
   <div class="main">
     <div class="topbar">Inventory Report</div>
     <div class="content">
@@ -169,8 +220,14 @@
     </div>
   </div>
 
+  <!-- Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
+    function toggleMenu(id) {
+      const el = document.getElementById(id);
+      el.style.display = el.style.display === "flex" ? "none" : "flex";
+    }
+
     const inventoryData = {
       Bread: [
         ["Taisan Soft Cake", 0], ["Ubeng Ube Loaf", 5], ["Pandecoconut", 12],
@@ -234,10 +291,8 @@
         if (value === "") {
           input.value = "Pre-order";
           td.classList.add('stock-preorder');
-          input.classList.add('text-blue-600');
         } else {
           const stock = parseInt(value);
-          input.classList.remove('text-blue-600');
           if (stock === 0) td.classList.add('stock-low');
           else if (stock < 10) td.classList.add('stock-medium');
           else td.classList.add('stock-ok');

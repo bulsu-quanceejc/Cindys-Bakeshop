@@ -10,7 +10,10 @@
       background-color: #f3f4f6;
     }
     .btn-filter {
-      @apply px-4 py-1 rounded text-sm border;
+      padding: 6px 12px;
+      font-size: 0.875rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
     .btn-active {
       background-color: #16a34a;
@@ -40,8 +43,14 @@
           </div>
         </div>
 
-        <a href="../products/ManageProduct.html" class="flex items-center gap-2 p-2 rounded sidebar-link">🛒 Products</a>
-        <a href="../dashboard/Ratings.html" class="flex items-center gap-2 p-2 rounded sidebar-link">⭐ Product Ratings</a>
+        <div class="menu">
+          <a href="javascript:void(0)" onclick="toggleMenu(this)" class="flex items-center gap-2 p-2 rounded sidebar-link">🛒 Products</a>
+          <div class="submenu ml-6 space-y-1">
+            <a href="../products/ManageProduct.html" class="block p-2 hover:bg-gray-100 rounded">Manage Products</a>
+            <a href="../dashboard/Ratings.html" class="block p-2 hover:bg-gray-100 rounded">Product Ratings</a>
+          </div>
+        </div>
+
         <a href="../dashboard/user.html" class="flex items-center gap-2 p-2 rounded sidebar-link">👥 Users</a>
 
         <div class="menu">
@@ -123,17 +132,19 @@
     function approveRefund(btn) {
       const row = btn.closest('tr');
       row.dataset.status = 'approved';
-      const cell = row.querySelector('td:nth-child(7)');
-      cell.textContent = 'Approved';
-      cell.className = 'text-green-500 font-medium';
+      const statusCell = row.querySelector('td:nth-child(7)');
+      statusCell.innerHTML = `<span class="text-green-500 font-medium">✔ Approved</span>`;
+      const actionCell = row.querySelector('td:nth-child(8)');
+      actionCell.innerHTML = `<span class="text-gray-500 italic text-xs">Completed</span>`;
     }
 
     function rejectRefund(btn) {
       const row = btn.closest('tr');
       row.dataset.status = 'rejected';
-      const cell = row.querySelector('td:nth-child(7)');
-      cell.textContent = 'Rejected';
-      cell.className = 'text-red-500 font-medium';
+      const statusCell = row.querySelector('td:nth-child(7)');
+      statusCell.innerHTML = `<span class="text-red-500 font-medium">✖ Rejected</span>`;
+      const actionCell = row.querySelector('td:nth-child(8)');
+      actionCell.innerHTML = `<span class="text-gray-500 italic text-xs">Completed</span>`;
     }
 
     function filterRefunds(status, clickedBtn) {
