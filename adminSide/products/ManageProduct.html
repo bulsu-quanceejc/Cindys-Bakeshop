@@ -6,13 +6,11 @@
   <title>Manage Products</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       background-color: #f5f5f5;
     }
-
     .sidebar {
       width: 240px;
       background-color: #ffffff;
@@ -21,30 +19,25 @@
       padding: 1rem;
       overflow-y: auto;
     }
-
     .sidebar .logo {
       text-align: center;
       margin-bottom: 1rem;
     }
-
     .sidebar .logo img {
       height: 48px;
     }
-
     .sidebar .logo p {
       font-size: 0.85rem;
       color: #dc2626;
       font-weight: bold;
       margin-top: 0.3rem;
     }
-
     .sidebar nav {
       display: flex;
       flex-direction: column;
       gap: 0.4rem;
       font-size: 0.95rem;
     }
-
     .sidebar a {
       display: flex;
       align-items: center;
@@ -55,38 +48,31 @@
       border-radius: 6px;
       transition: 0.2s ease;
     }
-
     .sidebar a:hover {
       background-color: #f3f4f6;
     }
-
     .submenu {
       margin-left: 1.5rem;
       display: none;
       flex-direction: column;
     }
-
     .submenu a {
       padding: 0.3rem 0.5rem;
       border-radius: 4px;
     }
-
     .submenu a:hover {
       background-color: #e5e7eb;
     }
-
     .submenu a.active {
       background-color: #d1fae5;
       font-weight: bold;
     }
-
     .main {
       flex: 1;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
-
     .topbar {
       background-color: #ffe600;
       padding: 1rem 2rem;
@@ -94,11 +80,9 @@
       font-size: 18px;
       border-bottom: 1px solid #ccc;
     }
-
     .content {
       padding: 20px;
     }
-
     .toolbar {
       display: flex;
       justify-content: space-between;
@@ -107,14 +91,12 @@
       gap: 10px;
       margin-bottom: 20px;
     }
-
     .toolbar input,
     .toolbar select {
       padding: 8px 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
     }
-
     .toolbar .btn-add {
       padding: 8px 15px;
       background-color: #f08080;
@@ -124,13 +106,11 @@
       cursor: pointer;
       text-decoration: none;
     }
-
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 20px;
     }
-
     .product-card {
       background: #fff;
       border: 2px solid #f08080;
@@ -138,23 +118,21 @@
       padding: 10px;
       text-align: center;
     }
-
     .product-card img {
-      width: 100%;
-      height: 120px;
+      width: 50%;
+      height: 100px;
       object-fit: cover;
       border-radius: 10px;
     }
-
     .stock {
       margin: 8px 0;
       font-weight: bold;
     }
-
-    .stock.low { color: red; }
-    .stock.medium { color: orange; }
-    .stock.high { color: green; }
-
+    .price {
+      color: #dc2626;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
     .product-card button {
       padding: 5px 10px;
       margin: 3px;
@@ -163,12 +141,10 @@
       cursor: pointer;
       border-radius: 4px;
     }
-
     .pagination {
       text-align: center;
       margin-top: 20px;
     }
-
     .pagination button {
       margin: 0 5px;
       padding: 8px 12px;
@@ -231,24 +207,58 @@
       <a href="AddNewProduct.html" class="btn-add">➕ Add New Product</a>
     </div>
 
-    <div class="product-grid" id="productGrid">
-      <!-- JS will populate -->
-    </div>
-
+    <div class="product-grid" id="productGrid"></div>
     <div class="pagination" id="paginationControls"></div>
   </div>
 </div>
 
 <script>
-  const products = Array.from({ length: 40 }).map((_, i) => ({
-    id: i + 1,
-    name: ["Cake", "Bread", "Pastry"][i % 3] + " " + (i + 1),
-    stock: Math.floor(Math.random() * 20),
-    category: ["Cake", "Bread", "Pastry"][i % 3],
-    image: "https://i.ibb.co/3kGhpFJ/sample-cake.png"
-  }));
+  function toggleMenu(id) {
+    const submenu = document.getElementById(id);
+    submenu.style.display = submenu.style.display === "flex" ? "none" : "flex";
+  }
 
-  const itemsPerPage = 12;
+  const products = [
+    // 🧁 CAKE (11)
+    { id: 1, name: "Choco Caramel Cake", price: "₱400", category: "Cake", image: "cake1.png" , stock: 20  },
+    { id: 2, name: "Moist Cake", price: "₱330", category: "Cake", image: "cake7.png", stock: 20  },
+    { id: 3, name: "Pastel Delight Cake", price: "₱395", category: "Cake", image: "cake4.png", stock: 20  },
+    { id: 4, name: "Mango Cream Delux JR.", price: "₱130", category: "Cake", image: "cake10.png", stock: 20  },
+    { id: 5, name: "Choco Celebration on Cake Round", price: "₱750", category: "Cake", image: "cake13.png", stock: 20  },
+    { id: 6, name: "Nutty Caramel Cake Roll", price: "₱350", category: "Cake", image: "cake19.png", stock: 20  },
+    { id: 7, name: "Glitz'n Glam Cake", price: "₱1500", category: "Cake", image: "cake22.png", stock: 20  },
+    { id: 8, name: "Cat CAstle Cake", price: "₱1900", category: "Cake", image: "cake25.png", stock: 20  },
+    { id: 9, name: "Rainbow Unicorn", price: "₱2300", category: "Cake", image: "cake28.png" , stock: 20 },
+    { id: 10, name: "Princess Cake", price: "₱3500", category: "Cake", image: "cake31.png" , stock: 20 },
+    { id: 11, name: "Elephant Cake", price: "₱1500", category: "Cake", image: "cake34.png", stock: 20  },
+
+    // 🍞 BREAD (11)
+    { id: 12, name: "Ubeng Ube Loaf", price: "₱35", category: "Bread", image: "bread2.png", stock: 20  },
+    { id: 13, name: "Pandecoconut", price: "₱100", category: "Bread", image: "bread3.png" , stock: 20 },
+    { id: 14, name: "Pande Espana", price: "₱100", category: "Bread", image: "bread4.png", stock: 20  },
+    { id: 15, name: "Ube Cheese Pandesal", price: "₱120", category: "Bread", image: "bread5.png", stock: 20  },
+    { id: 16, name: "Mamon Cup", price: "₱35", category: "Bread", image: "bread6.png", stock: 20  },
+    { id: 17, name: "Delightful Treats Choco Cringles", price: "₱75", category: "Bread", image: "bread7.png", stock: 20  },
+    { id: 18, name: "Pinoy Tasty", price: "₱45", category: "Bread", image: "bread8.png", stock: 20  },
+    { id: 19, name: "Jumbo Sandwich Loaf", price: "₱95", category: "Bread", image: "bread9.png" , stock: 20 },
+    { id: 20, name: "Wheat Bread", price: "₱70", category: "Bread", image: "bread10.png", stock: 20  },
+    { id: 21, name: "Pinoy Pandesal", price: "₱40", category: "Bread", image: "bread11.png" , stock: 20 },
+
+    // 🥐 PASTRY (11)
+    { id: 23, name: "Cheesy Butter Softy Mamon", price: "₱35", category: "Pastry", image: "pastry1.png" , stock: 20 },
+    { id: 24, name: "Bar Brownies", price: "₱35", category: "Pastry", image: "pastry2.png", stock: 20  },
+    { id: 25, name: "Custard Surprise", price: "₱35", category: "Pastry", image: "pastry3.png" , stock: 20 },
+    { id: 26, name: "Egg Pie Caramel", price: "₱36", category: "Pastry", image: "pastry4.png" , stock: 20 },
+    { id: 27, name: "Egg Pie Leche Flan", price: "₱75", category: "Pastry", image: "pastry5.png" , stock: 20 },
+    { id: 28, name: "Brownie Bites", price: "₱68", category: "Pastry", image: "pastry6.png" , stock: 20 },
+    { id: 29, name: "Cluster Ensaymada Ube with Cheese", price: "₱140", category: "Pastry", image: "pastry7.png" , stock: 20 },
+    { id: 30, name: "Cheesy Ensaymada", price: "₱145", category: "Pastry", image: "pastry8.png", stock: 20  },
+    { id: 31, name: "Mini Cinamon Roll", price: "₱150", category: "Pastry", image: "pastry9.png" , stock: 20 },
+    { id: 32, name: "Snap n' Roll", price: "₱150", category: "Pastry", image: "pastry10.png" , stock: 20 },
+    { id: 33, name: "Ensaymada Ube", price: "₱", category: "Pastry", image: "pastry11.png" , stock: 20 }
+  ];
+
+  const itemsPerPage = 27;
   let currentPage = 1;
 
   function displayProducts() {
@@ -257,7 +267,7 @@
     const search = document.getElementById("search").value.toLowerCase();
     const category = document.getElementById("category").value;
 
-    const filtered = products.filter(p =>
+   const filtered = products.filter(p =>
       p.name.toLowerCase().includes(search) &&
       (category === "" || p.category === category)
     );
