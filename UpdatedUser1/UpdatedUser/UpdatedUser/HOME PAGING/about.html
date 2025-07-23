@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Us - Cindy's Bakeshop</title>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+ body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  color: #333;
+  position: relative;
+  z-index: 0;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../Images/hehe.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  filter: blur(8px);
+  z-index: -1;
+}
+
+header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: red;
+      padding: 16px 40px;
+      border-bottom: 2px solid red;
+    }
+
+    .logo img {
+      height: 120px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .nav a,
+    .dropdown button {
+      padding: 15px 34px;
+      border-radius: 30px;
+      background: transparent;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      font-weight: bold;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .nav a i,
+    .dropdown button i {
+      font-size: 18px;
+    }
+
+    .nav a:hover,
+    .dropdown button:hover {
+      background: black;
+      color: white;
+    }
+
+    .about-section {
+      padding: 60px 40px;
+      text-align: center;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .about-section h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+      color: #000000;
+    }
+
+    .about-section p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #ffffff;
+    }
+
+    .about-img {
+      margin-top: 40px;
+    }
+
+    .about-img img {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+   
+    footer {
+      background: #333;
+      color: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 30px 20px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+
+    footer div {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 250px;
+    }
+
+    footer b {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    footer a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .about-section {
+        padding: 40px 20px;
+      }
+
+      .about-section h1 {
+        font-size: 30px;
+      }
+
+      .about-section p {
+        font-size: 16px;
+      }
+
+      footer {
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+ <header>
+    <div class="logo">
+      <img src="logo.png" alt="Cindy's Logo" />
+    </div>
+    <div class="nav">
+      <a href="../HOME PAGING/HOME.HTML"><i class="fas fa-home"></i> Home</a>
+      <a href="../HOME PAGING/about.html"><i class="fas fa-info-circle"></i> About</a>
+      <a href="../LOGIN_SIGNUP/user_login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+      <a href="../LOGIN_SIGNUP/signup.html"><i class="fas fa-user-plus"></i> Signup</a>
+    </div>
+  </header>
+
+  <section class="about-section">
+    <h1>About Cindy’s Bakeshop</h1>
+    <p>
+      Founded with love in Hagonoy, Bulacan, <strong>Cindy’s Bakeshop</strong> has been serving heartwarming breads, delightful cakes, and irresistible pastries to Filipino families for years. 
+      <br><br>
+      What started as a small neighborhood bakery has grown into a trusted name, known for quality, freshness, and warm customer service. We believe in making every bite a celebration — whether it’s a birthday cake or your favorite loaf for breakfast.
+      <br><br>
+      Our mission is simple: to make everyday moments sweeter with affordable and delicious baked goods made with passion. From pickup to delivery, we make sure every order is baked fresh and served fast.
+    </p>
+
+    <div class="about-img">
+      <img src="../Images/about-us.jpg" alt="Our Bakery">
+    </div>
+  </section>
+
+  <footer>
+    <div>
+      <b>Get to Know Us</b>
+      <a href="#">About Us</a>
+      <a href="#">Our Services</a>
+      <a href="#">Contact Us</a>
+    </div>
+    <div>
+      <b>Let Us Help You</b>
+      <a href="#">📘 Facebook</a>
+      <a href="#">📸 Instagram</a>
+      <a href="#">🐦 Twitter</a>
+    </div>
+    <div>
+      <b>About Our Company</b>
+      <a href="#">About Us</a>
+      <a href="#">Head office</a>
+      <a href="#">Telephone: 99838737363828</a>
+      <a href="#">Email: chadhbasjkb@com</a>
+    </div>
+  </footer>
+
+</body>
+</html>
