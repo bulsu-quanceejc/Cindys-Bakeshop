@@ -33,7 +33,7 @@
               <ul class="max-h-60 overflow-y-auto text-sm" id="notifList"></ul>
             </div>
           </div>
-          <img src="avatar.png" alt="User Avatar" class="h-10 w-10 rounded-full border border-gray-300" />
+          <img src="https://i.imgur.com/1Q2Z1ZL.png" alt="User Avatar" class="h-10 w-10 rounded-full border border-gray-300" />
         </div>
       </div>
       <div class="header-stats-container">
