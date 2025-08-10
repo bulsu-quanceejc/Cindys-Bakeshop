@@ -6,17 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Manage Orders</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    .sidebar-link:hover {
-      background-color: #f3f4f6;
-    }
-    .tab-active {
-      font-weight: bold;
-      color: #16a34a;
-    }
-  </style>
+  <link rel="stylesheet" href="../css/admin.css">
 </head>
-<body class="bg-white">
+<body>
   <div class="flex h-screen overflow-hidden">
     
     <?php
@@ -26,8 +18,8 @@
 
     <!-- Main Content -->
     <main class="flex-1 overflow-y-auto">
-      <div class="bg-yellow-400 p-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold text-white uppercase">Orders</h1>
+      <div class="header-bar">
+        <h1>Orders</h1>
         <div class="flex gap-4 items-center">
           <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -53,7 +45,7 @@
             <button onclick="filterOrders('shipped')" class="text-blue-600">Shipped</button>
             <button onclick="filterOrders('completed')" class="text-blue-600">Completed</button>
           </div>
-          <table class="w-full text-sm text-left">
+          <table class="table w-full text-sm text-left">
             <thead class="border-b">
               <tr>
                 <th class="py-2">✓</th>

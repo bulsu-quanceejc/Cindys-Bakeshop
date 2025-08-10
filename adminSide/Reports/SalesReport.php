@@ -5,162 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sales Report - Admin</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/admin.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      background-color: #f5f5f5;
-    }
-
-    .sidebar {
-      width: 240px;
-      background-color: #ffffff;
-      height: 100vh;
-      border-right: 1px solid #ddd;
-      padding: 1rem;
-      overflow-y: auto;
-    }
-
-    .sidebar .logo {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .sidebar .logo img {
-      height: 48px;
-    }
-
-    .sidebar .logo p {
-      font-size: 0.85rem;
-      color: #dc2626;
-      font-weight: bold;
-      margin-top: 0.3rem;
-    }
-
-    .sidebar nav {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      font-size: 0.95rem;
-    }
-
-    .sidebar a {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem;
-      text-decoration: none;
-      color: #000;
-      border-radius: 6px;
-      transition: 0.2s ease;
-    }
-
-    .sidebar a:hover {
-      background-color: #f3f4f6;
-    }
-
-    .submenu {
-      margin-left: 1.5rem;
-      display: none;
-      flex-direction: column;
-    }
-
-    .submenu a {
-      padding: 0.3rem 0.5rem;
-      border-radius: 4px;
-    }
-
-    .submenu a:hover {
-      background-color: #e5e7eb;
-    }
-
-    .main {
-      flex: 1;
-    }
-
-    .top-header {
-      background-color: #facc15;
-      height: 150px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      padding: 1rem 2rem;
-      position: relative;
-    }
-
-    .avatar-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .summary-cards {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin: 1rem 2rem;
-    }
-
-    .card {
-      flex: 1 1 200px;
-      padding: 1rem;
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      text-align: center;
-    }
-
-    .chart-container,
-    .filter-bar,
-    table {
-      margin: 1rem 2rem;
-    }
-
-    canvas {
-      width: 100% !important;
-      height: 240px !important;
-    }
-
-    .filter-bar select,
-    .filter-bar button {
-      padding: 6px;
-      margin-right: 5px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
-
-    .export-btn {
-      background-color: #4dabf7;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    table {
-      width: calc(100% - 4rem);
-      border-collapse: collapse;
-      background-color: #fff;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
-    }
-
-    th {
-      background: #f1f3f5;
-    }
-  </style>
 </head>
-<body class="bg-white flex h-screen overflow-hidden">
+<body class="sales-report flex h-screen overflow-hidden">
   <?php
   $activePage = 'reports';
   include '../sidebar.php';
@@ -168,17 +16,13 @@
 
   <!-- Main Content -->
   <main class="main flex-1 overflow-y-auto">
-    <div class="top-header">
-      <div>
-        <h1 class="text-2xl font-bold text-gray-800">Sales Report</h1>
-        <p class="text-sm text-gray-700 mt-1">Overview of store sales performance</p>
-      </div>
-      <div class="avatar-wrapper">
+    <div class="header-bar">
+      <h1>Sales Report</h1>
+      <div class="flex items-center gap-4">
         <div class="relative">
           <button onclick="toggleNotificationDropdown()" class="relative focus:outline-none">
             <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
             </svg>
             <span class="absolute top-0 right-0 block h-2 w-2 bg-red-600 rounded-full"></span>
           </button>
@@ -190,6 +34,7 @@
         <img src="https://i.imgur.com/1Q2Z1ZL.png" alt="User" class="h-10 w-10 rounded-full border border-gray-300" />
       </div>
     </div>
+    <p class="px-6 py-2 text-sm text-gray-700">Overview of store sales performance</p>
 
     <!-- Filter -->
     <div class="filter-bar">

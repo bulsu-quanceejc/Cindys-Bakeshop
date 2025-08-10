@@ -5,24 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Manage Refunds</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    .sidebar-link:hover {
-      background-color: #f3f4f6;
-    }
-    .btn-filter {
-      padding: 6px 12px;
-      font-size: 0.875rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .btn-active {
-      background-color: #16a34a;
-      color: white;
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="../css/admin.css">
 </head>
-<body class="bg-white">
+<body>
   <div class="flex h-screen overflow-hidden">
 
     <?php
@@ -32,8 +17,8 @@
 
     <!-- Main Content -->
     <main class="flex-1 overflow-y-auto">
-      <div class="bg-yellow-400 p-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold text-white uppercase">Refunds</h1>
+      <div class="header-bar">
+        <h1>Refunds</h1>
         <div class="flex gap-4 items-center">
           <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
@@ -54,7 +39,7 @@
             <button class="btn-filter" onclick="filterRefunds('rejected', this)">Rejected</button>
             <button onclick="exportRefunds()" class="ml-auto bg-gray-300 px-4 py-1 rounded text-sm font-semibold">Export CSV</button>
           </div>
-          <table class="w-full text-sm text-left">
+          <table class="table w-full text-sm text-left">
             <thead class="border-b">
               <tr>
                 <th>✓</th>
