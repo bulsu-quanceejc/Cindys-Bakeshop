@@ -149,11 +149,19 @@
       }
     });
 
+    function sanitizeCSVCell(value) {
+      value = value.replace(/"/g, '""');
+      if (/^[=+\-@]/.test(value)) {
+        value = "'" + value;
+      }
+      return `"${value}"`;
+    }
+
     function exportTableToCSV() {
       const table = document.getElementById("salesTable");
       let csv = [];
       for (let row of table.rows) {
-        let cols = Array.from(row.cells).map(cell => `"${cell.innerText}"`);
+        let cols = Array.from(row.cells).map(cell => sanitizeCSVCell(cell.innerText.trim()));
         csv.push(cols.join(","));
       }
       const csvContent = "data:text/csv;charset=utf-8," + csv.join("\n");
