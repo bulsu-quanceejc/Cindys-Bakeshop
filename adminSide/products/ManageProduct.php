@@ -235,34 +235,35 @@ const products = [
   { id: 66, name: "Spider Web Cake", price: "₱3900", category: "Cake", image: "Compressed images/cake46.png", stock: 20 },
   
   // 🍞 BREAD (11)
-  { id: 12, name: "Ubeng Ube Loaf", price: "₱35", category: "Bread", image: "Compressed images/bread2.png", stock: 20 },
-  { id: 13, name: "Pandecoconut", price: "₱100", category: "Bread", image: "Compressed images/bread3.png", stock: 20 },
-  { id: 14, name: "Pande Espana", price: "₱100", category: "Bread", image: "Compressed images/bread4.png", stock: 20 },
-  { id: 15, name: "Ube Cheese Pandesal", price: "₱120", category: "Bread", image: "Compressed images/bread5.png", stock: 20 },
-  { id: 16, name: "Mamon Cup", price: "₱35", category: "Bread", image: "Compressed images/bread6.png", stock: 20 },
-  { id: 17, name: "Delightful Treats Choco Cringles", price: "₱75", category: "Bread", image: "Compressed images/bread7.png", stock: 20 },
-  { id: 18, name: "Pinoy Tasty", price: "₱45", category: "Bread", image: "Compressed images/bread8.png", stock: 20 },
-  { id: 19, name: "Jumbo Sandwich Loaf", price: "₱95", category: "Bread", image: "Compressed images/bread9.png", stock: 20 },
-  { id: 20, name: "Wheat Bread", price: "₱70", category: "Bread", image: "Compressed images/bread10.png", stock: 20 },
-  { id: 21, name: "Pinoy Pandesal", price: "₱40", category: "Bread", image: "Compressed images/bread11.png", stock: 20 },
+  { id: 12, name: "Ubeng Ube Loaf", price: "₱35", category: "Bread", image: "bread2.png", stock: 20 },
+  { id: 13, name: "Pandecoconut", price: "₱100", category: "Bread", image: "bread3.png", stock: 20 },
+  { id: 14, name: "Pande Espana", price: "₱100", category: "Bread", image: "bread4.png", stock: 20 },
+  { id: 15, name: "Ube Cheese Pandesal", price: "₱120", category: "Bread", image: "bread5.png", stock: 20 },
+  { id: 16, name: "Mamon Cup", price: "₱35", category: "Bread", image: "bread6.png", stock: 20 },
+  { id: 17, name: "Delightful Treats Choco Cringles", price: "₱75", category: "Bread", image: "bread7.png", stock: 20 },
+  { id: 18, name: "Pinoy Tasty", price: "₱45", category: "Bread", image: "bread8.png", stock: 20 },
+  { id: 19, name: "Jumbo Sandwich Loaf", price: "₱95", category: "Bread", image: "bread9.png", stock: 20 },
+  { id: 20, name: "Wheat Bread", price: "₱70", category: "Bread", image: "bread10.png", stock: 20 },
+  { id: 21, name: "Pinoy Pandesal", price: "₱40", category: "Bread", image: "bread11.png", stock: 20 },
 
   // 🥐 PASTRY (11)
-  { id: 23, name: "Cheesy Butter Softy Mamon", price: "₱35", category: "Pastry", image: "Compressed images/pastry1.png", stock: 20 },
-  { id: 24, name: "Bar Brownies", price: "₱35", category: "Pastry", image: "Compressed images/pastry2.png", stock: 20 },
-  { id: 25, name: "Custard Surprise", price: "₱35", category: "Pastry", image: "Compressed images/pastry3.png", stock: 20 },
-  { id: 26, name: "Egg Pie Caramel", price: "₱36", category: "Pastry", image: "Compressed images/pastry4.png", stock: 20 },
-  { id: 27, name: "Egg Pie Leche Flan", price: "₱75", category: "Pastry", image: "Compressed images/pastry5.png", stock: 20 },
-  { id: 28, name: "Brownie Bites", price: "₱68", category: "Pastry", image: "Compressed images/pastry6.png", stock: 20 },
-  { id: 29, name: "Cluster Ensaymada Ube with Cheese", price: "₱140", category: "Pastry", image: "Compressed images/pastry7.png", stock: 20 },
-  { id: 30, name: "Cheesy Ensaymada", price: "₱145", category: "Pastry", image: "Compressed images/pastry8.png", stock: 20 },
-  { id: 31, name: "Mini Cinamon Roll", price: "₱150", category: "Pastry", image: "Compressed images/pastry9.png", stock: 20 },
-  { id: 32, name: "Snap n' Roll", price: "₱150", category: "Pastry", image: "Compressed images/pastry10.png", stock: 20 },
-  { id: 33, name: "Ensaymada Ube", price: "₱120", category: "Pastry", image: "Compressed images/pastry11.png", stock: 20 }
+  { id: 23, name: "Cheesy Butter Softy Mamon", price: "₱35", category: "Pastry", image: "pastry1.png", stock: 20 },
+  { id: 24, name: "Bar Brownies", price: "₱35", category: "Pastry", image: "pastry2.png", stock: 20 },
+  { id: 25, name: "Custard Surprise", price: "₱35", category: "Pastry", image: "pastry3.png", stock: 20 },
+  { id: 26, name: "Egg Pie Caramel", price: "₱36", category: "Pastry", image: "pastry4.png", stock: 20 },
+  { id: 27, name: "Egg Pie Leche Flan", price: "₱75", category: "Pastry", image: "pastry5.png", stock: 20 },
+  { id: 28, name: "Brownie Bites", price: "₱68", category: "Pastry", image: "pastry6.png", stock: 20 },
+  { id: 29, name: "Cluster Ensaymada Ube with Cheese", price: "₱140", category: "Pastry", image: "pastry7.png", stock: 20 },
+  { id: 30, name: "Cheesy Ensaymada", price: "₱145", category: "Pastry", image: "pastry8.png", stock: 20 },
+  { id: 31, name: "Mini Cinamon Roll", price: "₱150", category: "Pastry", image: "pastry9.png", stock: 20 },
+  { id: 32, name: "Snap n' Roll", price: "₱150", category: "Pastry", image: "pastry10.png", stock: 20 },
+  { id: 33, name: "Ensaymada Ube", price: "₱120", category: "Pastry", image: "pastry11.png", stock: 20 }
 ];
 
 
 
-  const itemsPerPage = 24;
+  const itemsPerPage = 24
+;
   let currentPage = 1;
 
   function displayProducts() {
