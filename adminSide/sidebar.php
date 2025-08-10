@@ -48,5 +48,10 @@ $activePage = $activePage ?? '';
     const parent = element.parentElement;
     const submenu = parent.querySelector('.submenu');
     submenu.classList.toggle('hidden');
+    if (submenu.classList.contains('hidden')) {
+      submenu.style.display = 'none';
+    } else {
+      submenu.style.display = 'block';
+    }
   }
 </script>
