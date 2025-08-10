@@ -107,14 +107,7 @@ body {
 }
 
 /* Dashboard specific */
-.dashboard-page .top-header {
-  background-color: #facc15;
-  height: 150px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  position: relative;
-}
+
 .dashboard-page .header-stats-container {
   display: flex;
   flex-wrap: wrap;
@@ -127,16 +120,7 @@ body {
   width: 100%;
   font-size: 0.875rem;
   justify-content: space-around;
-  margin-top: 5rem;
-  margin-left: 5rem;
-  margin-right: auto;
-}
-.dashboard-page .avatar-wrapper {
-  margin-left: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  position: relative;
+  margin: 2rem auto;
 }
 
 /* Finance page */
@@ -295,20 +279,7 @@ body {
 .sales-report .main {
   flex: 1;
 }
-.sales-report .top-header {
-  background-color: #facc15;
-  height: 150px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  position: relative;
-}
-.sales-report .avatar-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
+
 .sales-report .summary-cards {
   display: flex;
   gap: 1rem;

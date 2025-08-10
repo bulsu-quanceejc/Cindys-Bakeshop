@@ -17,32 +17,10 @@
 
 
     <!-- Main Content -->
-    <main class="flex-1">
-      <!-- Header -->
-      <div class="top-header">
-        <!-- Stat Summary Box -->
-        <div class="header-stats-container">
-          <a href="../ORDERS/ManageOrders.php" class="text-center hover:underline">
-            <div class="font-semibold text-gray-800">Orders </div>
-            <div class="text-lg font-bold">25</div>
-          </a>
-          <a href="../ORDERS/ManageRefund.php" class="text-center hover:underline">
-            <div class="font-semibold text-gray-800">Refund</div>
-            <div class="text-lg font-bold">0</div>
-          </a>
-          <a href="../Reports/InventoryReport.php" class="text-center hover:underline">
-            <div class="font-semibold text-gray-800">Low Stock</div>
-            <div class="text-red-600 font-bold text-lg">19</div>
-            <div class="text-xs text-red-500">Out of stock: 19</div>
-          </a>
-          <a href="Ratings.php" class="text-center hover:underline">
-            <div class="font-semibold text-gray-800">Product Ratings</div>
-            <div class="text-lg font-bold">25</div>
-          </a>
-        </div>
-
-        <!-- Avatar and Notifications -->
-        <div class="avatar-wrapper">
+    <main class="flex-1 overflow-y-auto">
+      <div class="header-bar">
+        <h1>Dashboard</h1>
+        <div class="flex items-center gap-4">
           <div class="relative">
             <button onclick="toggleDropdown()" class="relative focus:outline-none">
               <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -58,9 +36,28 @@
           <img src="avatar.png" alt="User Avatar" class="h-10 w-10 rounded-full border border-gray-300" />
         </div>
       </div>
+      <div class="header-stats-container">
+        <a href="../ORDERS/ManageOrders.php" class="text-center hover:underline">
+          <div class="font-semibold text-gray-800">Orders </div>
+          <div class="text-lg font-bold">25</div>
+        </a>
+        <a href="../ORDERS/ManageRefund.php" class="text-center hover:underline">
+          <div class="font-semibold text-gray-800">Refund</div>
+          <div class="text-lg font-bold">0</div>
+        </a>
+        <a href="../Reports/InventoryReport.php" class="text-center hover:underline">
+          <div class="font-semibold text-gray-800">Low Stock</div>
+          <div class="text-red-600 font-bold text-lg">19</div>
+          <div class="text-xs text-red-500">Out of stock: 19</div>
+        </a>
+        <a href="Ratings.php" class="text-center hover:underline">
+          <div class="font-semibold text-gray-800">Product Ratings</div>
+          <div class="text-lg font-bold">25</div>
+        </a>
+      </div>
 
       <!-- Welcome Message -->
-      <div class="px-6 mt-12">
+      <div class="px-6 mt-6">
         <h1 class="text-2xl font-bold text-gray-800">Welcome back, Admin!</h1>
         <p class="text-sm text-gray-500">Here's a summary of today's store performance </p>
       </div>
