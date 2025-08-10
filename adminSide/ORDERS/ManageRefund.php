@@ -103,19 +103,28 @@
       clickedBtn.classList.add('btn-active');
     }
 
+    function sanitizeCSVCell(value) {
+      value = value.replace(/"/g, '""');
+      if (/^[=+\-@]/.test(value)) {
+        value = "'" + value;
+      }
+      return `"${value}"`;
+    }
+
     function exportRefunds() {
       const rows = Array.from(document.querySelectorAll('#refundTable tr')).filter(row => row.style.display !== 'none');
-      let csv = "Refund ID,Order ID,Customer,Reason,Date,Status\n";
+      const headers = ['Refund ID','Order ID','Customer','Reason','Date','Status'].map(sanitizeCSVCell).join(',');
+      let csv = headers + "\n";
 
       rows.forEach(row => {
         const cells = row.querySelectorAll('td');
         csv += [
-          cells[1].textContent.trim(),
-          cells[2].textContent.trim(),
-          cells[3].textContent.trim(),
-          cells[4].textContent.trim(),
-          cells[5].textContent.trim(),
-          cells[6].textContent.trim()
+          sanitizeCSVCell(cells[1].textContent.trim()),
+          sanitizeCSVCell(cells[2].textContent.trim()),
+          sanitizeCSVCell(cells[3].textContent.trim()),
+          sanitizeCSVCell(cells[4].textContent.trim()),
+          sanitizeCSVCell(cells[5].textContent.trim()),
+          sanitizeCSVCell(cells[6].textContent.trim())
         ].join(",") + "\n";
       });
 
