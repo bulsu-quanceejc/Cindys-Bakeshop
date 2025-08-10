@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Users - Cindy’s Bakeshop</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+    }
+
+    .sidebar {
+      width: 200px;
+      background: #fff;
+      height: 100vh;
+      position: fixed;
+      border-right: 1px solid #ccc;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      color: red;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+      display: block;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: background 0.2s;
+    }
+
+    .sidebar ul li a:hover {
+      background: #ffe600;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .sidebar ul li a.active {
+      background: #d6f5d6;
+      color: green;
+      font-weight: bold;
+    }
+
+    .main {
+      margin-left: 220px;
+      padding: 20px;
+    }
+
+    .header {
+      background: #ffe600;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tabs {
+      margin-top: 20px;
+    }
+
+    .tab-button {
+      background: #eee;
+      border: 1px solid #ccc;
+      padding: 8px 16px;
+      margin-right: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .tab-button.active {
+      background: #ffdddd;
+      color: red;
+      border: 1px solid red;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    .unblock-btn {
+      padding: 6px 12px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .unblock-btn:hover {
+      background: #218838;
+    }
+    table select {
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+  </style>
+</head>
+
+<body class="bg-white">
+  <div class="flex h-screen overflow-hidden">
+    <?php
+    $activePage = 'users';
+    include '../sidebar.php';
+    ?>
+    <main class="flex-1 overflow-y-auto">
+      <div class="bg-yellow-400 p-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold text-white uppercase">Users</h1>
+        <div class="flex gap-4 items-center">
+          <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+          </svg>
+          <img src="avatar.png" alt="User Avatar" class="h-10 w-10 rounded-full border border-gray-300" />
+        </div>
+      </div>
+      <div class="p-6">
+        <div class="tabs mb-4">
+          <button class="tab-button" onclick="showAllUsers()">All Users</button>
+          <button class="tab-button active" onclick="showBlockedUsers()">Blocked Users</button>
+        </div>
+        <div class="filter-bar flex gap-4 mb-4">
+          <input type="text" id="searchInput" placeholder="Search by name or email..." class="border rounded px-2 py-1 text-sm">
+
+          <select id="cakeFilter" class="border rounded px-2 py-1 text-sm">
+            <option value="All">All Cancelled Cakes</option>
+            <option value="Chocolate Cake">Chocolate Cake</option>
+            <option value="Red Velvet Cake">Red Velvet Cake</option>
+            <option value="Cheesecake">Cheesecake</option>
+            <option value="Ube Macapuno Cake">Ube Macapuno Cake</option>
+          </select>
+        </div>
+        <table id="usersTable" class="w-full text-sm text-left bg-white rounded shadow">
+          <thead class="border-b">
+            <tr>
+              <th class="py-2">Name</th>
+              <th>Email</th>
+              <th>Date Blocked</th>
+              <th>Reason</th>
+              <th>Cancelled Product</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Maria Andoks</td>
+              <td>maria@example.com</td>
+              <td>2025-07-05</td>
+              <td>Violation of terms</td>
+              <td>Red Velvet Cake</td>
+              <td><button class="unblock-btn bg-green-500 text-white px-3 py-1 rounded">Unblock</button></td>
+            </tr>
+            <tr>
+              <td>Juan Dela Cruz</td>
+              <td>juancruz@example.com</td>
+              <td>2025-06-22</td>
+              <td>Spam activity</td>
+              <td>Chocolate Cake</td>
+              <td><button class="unblock-btn bg-green-500 text-white px-3 py-1 rounded">Unblock</button></td>
+            </tr>
+            <tr>
+              <td>Ana Reyes</td>
+              <td>ana.reyes@example.com</td>
+              <td>2025-07-03</td>
+              <td>Fake orders</td>
+              <td>Cheesecake</td>
+              <td><button class="unblock-btn bg-green-500 text-white px-3 py-1 rounded">Unblock</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const cakeFilter = document.getElementById('cakeFilter');
+  const rows = document.querySelectorAll("#usersTable tbody tr");
+
+  function filterTable() {
+    const query = searchInput.value.toLowerCase();
+    const selectedCake = cakeFilter.value;
+
+    rows.forEach(row => {
+      const name = row.cells[0].textContent.toLowerCase();
+      const email = row.cells[1].textContent.toLowerCase();
+      const cake = row.cells[4].textContent;
+
+      const matchesSearch = name.includes(query) || email.includes(query);
+      const matchesCake = selectedCake === "All" || cake === selectedCake;
+
+      row.style.display = (matchesSearch && matchesCake) ? "" : "none";
+    });
+  }
+
+  searchInput.addEventListener('input', filterTable);
+  cakeFilter.addEventListener('change', filterTable);
+
+  function showAllUsers() {}
+  function showBlockedUsers() {}
+</script>
+
+
+</body>
+</html>
