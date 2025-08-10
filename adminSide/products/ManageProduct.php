@@ -9,64 +9,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
       background-color: #f5f5f5;
-    }
-    .sidebar {
-      width: 240px;
-      background-color: #ffffff;
-      height: 100vh;
-      border-right: 1px solid #ddd;
-      padding: 1rem;
-      overflow-y: auto;
-    }
-    .sidebar .logo {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    .sidebar .logo img {
-      height: 48px;
-    }
-    .sidebar .logo p {
-      font-size: 0.85rem;
-      color: #dc2626;
-      font-weight: bold;
-      margin-top: 0.3rem;
-    }
-    .sidebar nav {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      font-size: 0.95rem;
-    }
-    .sidebar a {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem;
-      text-decoration: none;
-      color: #000;
-      border-radius: 6px;
-      transition: 0.2s ease;
-    }
-    .sidebar a:hover {
-      background-color: #f3f4f6;
-    }
-    .submenu {
-      margin-left: 1.5rem;
-      display: none;
-      flex-direction: column;
-    }
-    .submenu a {
-      padding: 0.3rem 0.5rem;
-      border-radius: 4px;
-    }
-    .submenu a:hover {
-      background-color: #e5e7eb;
-    }
-    .submenu a.active {
-      background-color: #d1fae5;
-      font-weight: bold;
     }
     .main {
       flex: 1;

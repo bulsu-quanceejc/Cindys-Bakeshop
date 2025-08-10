@@ -13,59 +13,7 @@
     }
 
     body {
-      display: flex;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #1a1a1a;
-    }
-
-    .sidebar {
-      width: 220px;
-      background: #fff;
-      height: 100vh;
-      padding: 1rem;
-      border-right: 1px solid #ccc;
-      overflow-y: auto;
-    }
-
-    .sidebar img {
-      height: 40px;
-      display: block;
-      margin: 0 auto 20px;
-    }
-
-    .sidebar nav {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .sidebar a {
-      padding: 10px;
-      text-decoration: none;
-      color: #111;
-      border-radius: 5px;
-      margin: 2px 0;
-    }
-
-    .sidebar a:hover,
-    .sidebar a.active {
-      background-color: #d1fae5;
-      font-weight: bold;
-    }
-
-    .submenu {
-      margin-left: 20px;
-      display: none;
-      flex-direction: column;
-    }
-
-    .submenu a {
-      font-size: 0.9rem;
-      padding: 6px 10px;
-    }
-
-    .main {
-      flex: 1;
-      background: #e5e5e5;
     }
 
     .topbar {
