@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Manage Products</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -156,39 +157,14 @@
     }
   </style>
 </head>
-<body>
-
-<!-- Sidebar -->
-<div class="sidebar">
-  <div class="logo">
-    <img src="https://i.imgur.com/N7rlQYt.png" alt="Cindy's Logo" />
-    <p>Give your sweet tooth a treat</p>
-  </div>
-  <nav>
-    <a href="../dashboard/admin_dash.html">🏠 Dashboard</a>
-    <a href="javascript:void(0)" onclick="toggleMenu('ordersSubmenu')">📦 Orders</a>
-    <div class="submenu" id="ordersSubmenu">
-      <a href="../ORDERS/ManageOrders.html">Manage Orders</a>
-      <a href="../ORDERS/ManageCancel.html">Manage Cancellation</a>
-      <a href="../ORDERS/ManageRefund.html">Manage Refund</a>
-    </div>
-    <a href="javascript:void(0)" onclick="toggleMenu('productsSubmenu')">🛒 Products</a>
-    <div class="submenu" id="productsSubmenu" style="display: flex;">
-      <a href="../products/ManageProduct.html" class="active">Manage Products</a>
-      <a href="../dashboard/Ratings.html">Product Ratings</a>
-    </div>
-    <a href="../dashboard/user.html">👥 Users</a>
-    <a href="javascript:void(0)" onclick="toggleMenu('reportsSubmenu')">📈 Reports</a>
-    <div class="submenu" id="reportsSubmenu">
-      <a href="../Reports/SalesReport.html">Sales Report</a>
-      <a href="../Reports/InventoryReport.html">Inventory Report</a>
-    </div>
-    <a href="../dashboard/finance.html">💰 Finance</a>
-  </nav>
-</div>
+<body class="bg-white flex h-screen overflow-hidden">
+<?php
+$activePage = 'products';
+include '../sidebar.php';
+?>
 
 <!-- Main -->
-<div class="main">
+<main class="main flex-1 overflow-y-auto">
   <div class="topbar">Manage Products</div>
   <div class="content">
     <div class="toolbar">
@@ -199,13 +175,13 @@
         <option value="Bread">Bread</option>
         <option value="Pastry">Pastry</option>
       </select>
-      <a href="AddNewProduct.html" class="btn-add">➕ Add New Product</a>
+      <a href="AddNewProduct.php" class="btn-add">➕ Add New Product</a>
     </div>
 
     <div class="product-grid" id="productGrid"></div>
     <div class="pagination" id="paginationControls"></div>
   </div>
-</div>
+</main>
 
 <script>
 const products = [
@@ -345,12 +321,7 @@ const products = [
     if (confirmDelete) {
       alert("Deleted Product #" + id);
     }
-  }
-
-  function toggleMenu(id) {
-    const el = document.getElementById(id);
-    el.style.display = el.style.display === "flex" ? "none" : "flex";
-  }
+}
 
   document.getElementById("search").addEventListener("input", () => {
     currentPage = 1;

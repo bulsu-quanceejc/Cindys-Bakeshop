@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Inventory Report</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -171,42 +172,14 @@
     }
   </style>
 </head>
-<body>
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div class="logo">
-      <img src="your-logo.png" alt="Cindy's Logo" />
-      <p>Give your sweet tooth a treat</p>
-    </div>
-    <nav>
-      <a href="../dashboard/admin_dash.html">🏠 Dashboard</a>
-      <a href="javascript:void(0)" onclick="toggleMenu('ordersSubmenu')">📦 Orders</a>
-      <div class="submenu" id="ordersSubmenu">
-        <a href="../ORDERS/ManageOrders.html">Manage Orders</a>
-        <a href="../ORDERS/ManageCancel.html">Manage Cancellation</a>
-        <a href="../ORDERS/ManageRefund.html">Manage Refund</a>
-      </div>
-
-      <a href="javascript:void(0)" onclick="toggleMenu('productsSubmenu')">🛒 Products</a>
-      <div class="submenu" id="productsSubmenu">
-        <a href="../products/ManageProduct.html">Manage Products</a>
-        <a href="../dashboard/Ratings.html">Product Ratings</a>
-      </div>
-
-      <a href="users.html">👥 Users</a>
-
-      <a href="javascript:void(0)" onclick="toggleMenu('reportsSubmenu')">📈 Reports</a>
-      <div class="submenu" id="reportsSubmenu">
-        <a href="../Reports/SalesReport.html">Sales Report</a>
-        <a href="../Reports/InventoryReport.html" class="active">Inventory Report</a>
-      </div>
-
-      <a href="finance.html">💰 Finance</a>
-    </nav>
-  </div>
+<body class="bg-white flex h-screen overflow-hidden">
+  <?php
+  $activePage = 'reports';
+  include '../sidebar.php';
+  ?>
 
   <!-- Main -->
-  <div class="main">
+  <main class="main flex-1 overflow-y-auto">
     <div class="topbar">Inventory Report</div>
     <div class="content">
       <div class="search-bar">
@@ -218,15 +191,11 @@
         <!-- Tables inserted here by script -->
       </div>
     </div>
-  </div>
+  </main>
 
   <!-- Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
-    function toggleMenu(id) {
-      const el = document.getElementById(id);
-      el.style.display = el.style.display === "flex" ? "none" : "flex";
-    }
 
     const inventoryData = {
       Bread: [

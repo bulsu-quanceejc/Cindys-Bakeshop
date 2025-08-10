@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Product Ratings - Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -123,51 +124,20 @@
     }
   </style>
 </head>
-<body>
-
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <img src="https://i.imgur.com/N7rlQYt.png" alt="Cindy's Logo">
-    <nav>
-      <a href="#">🏠 Dashboard</a>
-
-      <!-- Orders with submenu -->
-      <a href="javascript:void(0)" onclick="toggleMenu('ordersSubmenu')">📦 Orders</a>
-      <div class="submenu" id="ordersSubmenu">
-        <a href="../ORDERS/ManageOrders.html">Manage Orders</a>
-        <a href="../ORDERS/ManageCancel.html">Manage Cancellation</a>
-        <a href="../ORDERS/ManageRefund.html">Manage Refund</a>
+  <body class="bg-white">
+    <div class="flex h-screen overflow-hidden">
+      <?php
+      $activePage = 'ratings';
+      include '../sidebar.php';
+      ?>
+      <main class="flex-1 overflow-y-auto">
+      <div class="topbar flex justify-between items-center bg-yellow-400 p-4 text-white">
+        <div><strong>Product ratings</strong></div>
+        <img src="https://i.imgur.com/1Q2Z1ZL.png" alt="User" class="h-8 w-8 rounded-full">
       </div>
 
-      <!-- Products with submenu -->
-      <a href="javascript:void(0)" onclick="toggleMenu('productsSubmenu')">🛒 Products</a>
-      <div class="submenu" id="productsSubmenu">
-        <a href="../products/ManageProduct.html">Manage Products</a>
-        <a href="../dashboard/Ratings.html" class="active">Product Ratings</a>
-      </div>
-
-      <a href="../dashboard/user.html">👥 Users</a>
-
-      <!-- Reports with submenu -->
-      <a href="javascript:void(0)" onclick="toggleMenu('reportsSubmenu')">📊 Reports</a>
-      <div class="submenu" id="reportsSubmenu">
-        <a href="../Reports/SalesReport.html">Sales Report</a>
-        <a href="../Reports/InventoryReport.html">Inventory Report</a>
-      </div>
-
-      <a href="../dashboard/finance.html">💰 Finance</a>
-    </nav>
-  </div>
-
-  <!-- Main -->
-  <div class="main">
-    <div class="topbar">
-      <div><strong>Product ratings</strong></div>
-      <img src="https://i.imgur.com/1Q2Z1ZL.png" alt="User">
-    </div>
-
-    <div class="content">
-      <table>
+      <div class="content p-6">
+        <table class="w-full text-sm text-left bg-white rounded shadow">
         <thead>
           <tr>
             <th>Product</th>
@@ -201,14 +171,9 @@
         </tbody>
       </table>
     </div>
-  </div>
+      </main>
+    </div>
 
-  <script>
-    function toggleMenu(id) {
-      const submenu = document.getElementById(id);
-      submenu.style.display = submenu.style.display === "flex" ? "none" : "flex";
-    }
-  </script>
-
+  
 </body>
 </html>

@@ -25,45 +25,10 @@
 <body class="bg-white">
   <div class="flex h-screen overflow-hidden">
 
-    <!-- Sidebar -->
-    <aside class="w-64 bg-white border-r border-gray-200 p-4 overflow-y-auto">
-      <div class="text-center mb-6">
-        <img src="../images/cindy's logo.png" alt="CINDY'S" class="mx-auto h-12">
-        <p class="text-sm text-red-600 font-semibold mt-2">Give your sweet tooth a treat</p>
-      </div>
-      <nav class="space-y-2 text-sm font-medium">
-        <a href="../dashboard/admin_dash.html" class="flex items-center gap-2 p-2 rounded sidebar-link">🏠 Dashboard</a>
-
-        <div class="menu">
-          <a href="javascript:void(0)" onclick="toggleMenu(this)" class="flex items-center gap-2 p-2 rounded sidebar-link">📦 Orders</a>
-          <div class="submenu ml-6 space-y-1">
-            <a href="../ORDERS/ManageOrders.html" class="block p-2 hover:bg-gray-100 rounded">Manage Orders</a>
-            <a href="../ORDERS/ManageCancel.html" class="block p-2 hover:bg-gray-100 rounded">Manage Cancellations</a>
-            <a href="../ORDERS/ManageRefund.html" class="block p-2 hover:bg-gray-100 rounded font-semibold text-green-600">Manage Refunds</a>
-          </div>
-        </div>
-
-        <div class="menu">
-          <a href="javascript:void(0)" onclick="toggleMenu(this)" class="flex items-center gap-2 p-2 rounded sidebar-link">🛒 Products</a>
-          <div class="submenu ml-6 space-y-1">
-            <a href="../products/ManageProduct.html" class="block p-2 hover:bg-gray-100 rounded">Manage Products</a>
-            <a href="../dashboard/Ratings.html" class="block p-2 hover:bg-gray-100 rounded">Product Ratings</a>
-          </div>
-        </div>
-
-        <a href="../dashboard/user.html" class="flex items-center gap-2 p-2 rounded sidebar-link">👥 Users</a>
-
-        <div class="menu">
-          <a href="javascript:void(0)" onclick="toggleMenu(this)" class="flex items-center gap-2 p-2 rounded sidebar-link">📈 Reports</a>
-          <div class="submenu hidden ml-6 space-y-1">
-            <a href="../Reports/SalesReport.html" class="block p-2 hover:bg-gray-100 rounded">Sales Report</a>
-            <a href="../Reports/InventoryReport.html" class="block p-2 hover:bg-gray-100 rounded">Inventory Report</a>
-          </div>
-        </div>
-
-        <a href="../dashboard/finance.html" class="flex items-center gap-2 p-2 rounded sidebar-link">💰 Finance</a>
-      </nav>
-    </aside>
+    <?php
+    $activePage = 'orders';
+    include '../sidebar.php';
+    ?>
 
     <!-- Main Content -->
     <main class="flex-1 overflow-y-auto">
@@ -124,11 +89,6 @@
   </div>
 
   <script>
-    function toggleMenu(element) {
-      const submenu = element.parentElement.querySelector('.submenu');
-      submenu.classList.toggle('hidden');
-    }
-
     function approveRefund(btn) {
       const row = btn.closest('tr');
       row.dataset.status = 'approved';

@@ -53,58 +53,10 @@
 </head>
 <body class="bg-gray-100">
   <div class="flex min-h-screen">
-   <!-- Sidebar -->
-<aside class="w-64 bg-white border-r border-gray-200 p-4 overflow-y-auto">
-  <div class="text-center mb-6">
-    <img src="logo.png" alt="CINDY'S" class="mx-auto h-12">
-    <p class="text-sm text-red-600 font-semibold mt-2">Give your sweet tooth a treat</p>
-  </div>
-  <nav class="space-y-2 text-sm font-medium">
-    <a href="admin_dash.html" class="flex items-center gap-2 p-2 bg-gray-200 rounded font-semibold">🏠 Dashboard</a>
-
-    <!-- Orders -->
-    <div class="menu">
-      <a href="javascript:void(0)" onclick="toggleMenu(this)" class="flex items-center gap-2 p-2 rounded sidebar-link">📦 Orders</a>
-      <div class="submenu hidden ml-6 space-y-1">
-        <a href="../ORDERS/ManageOrders.html" class="block p-2 hover:bg-gray-100 rounded">Manage Orders</a>
-        <a href="../ORDERS/ManageCancel.html" class="block p-2 hover:bg-gray-100 rounded">Manage Cancellations</a>
-        <a href="../ORDERS/ManageRefund.html" class="block p-2 hover:bg-gray-100 rounded">Manage Refunds</a>
-      </div>
-    </div>
-
-    <!-- Products -->
-    <div class="menu">
-      <a href="javascript:void(0)" onclick="toggleMenu(this)" class="flex items-center gap-2 p-2 rounded sidebar-link">🛒 Products</a>
-      <div class="submenu hidden ml-6 space-y-1">
-        <a href="../products/ManageProduct.html" class="block p-2 hover:bg-gray-100 rounded">Manage Products</a>
-            <a href="../dashboard/Ratings.html" class="flex items-center gap-2 p-2 rounded sidebar-link">⭐ Product Ratings</a>
-      </div>
-    </div>
-
-
-    <a href="user.html" class="flex items-center gap-2 p-2 rounded sidebar-link">👥 Users</a>
-
-    <!-- Reports -->
-    <div class="menu">
-      <a href="javascript:void(0)" onclick="toggleMenu(this)" class="flex items-center gap-2 p-2 rounded sidebar-link">📈 Reports</a>
-      <div class="submenu hidden ml-6 space-y-1">
-        <a href="../Reports/SalesReport.html" class="block p-2 hover:bg-gray-100 rounded">Sales Report</a>
-        <a href="../Reports/InventoryReport.html" class="block p-2 hover:bg-gray-100 rounded">Inventory Report</a>
-      </div>
-    </div>
-
-    <a href="finance.html" class="flex items-center gap-2 p-2 rounded sidebar-link">💰 Finance</a>
-  </nav>
-</aside>
-
-<!-- Toggle Submenu Script -->
-<script>
-  function toggleMenu(element) {
-    const parent = element.parentElement;
-    const submenu = parent.querySelector('.submenu');
-    submenu.classList.toggle('hidden');
-  }
-</script>
+    <?php
+    $activePage = 'dashboard';
+    include '../sidebar.php';
+    ?>
 
 
     <!-- Main Content -->
@@ -113,20 +65,20 @@
       <div class="top-header">
         <!-- Stat Summary Box -->
         <div class="header-stats-container">
-          <a href="../ORDERS/ManageOrders.html" class="text-center hover:underline">
+          <a href="../ORDERS/ManageOrders.php" class="text-center hover:underline">
             <div class="font-semibold text-gray-800">Orders </div>
             <div class="text-lg font-bold">25</div>
           </a>
-          <a href="../ORDERS/ManageRefund.html" class="text-center hover:underline">
+          <a href="../ORDERS/ManageRefund.php" class="text-center hover:underline">
             <div class="font-semibold text-gray-800">Refund</div>
             <div class="text-lg font-bold">0</div>
           </a>
-          <a href="../Reports/InventoryReport.html" class="text-center hover:underline">
+          <a href="../Reports/InventoryReport.php" class="text-center hover:underline">
             <div class="font-semibold text-gray-800">Low Stock</div>
             <div class="text-red-600 font-bold text-lg">19</div>
             <div class="text-xs text-red-500">Out of stock: 19</div>
           </a>
-          <a href="Ratings.html" class="text-center hover:underline">
+          <a href="Ratings.php" class="text-center hover:underline">
             <div class="font-semibold text-gray-800">Product Ratings</div>
             <div class="text-lg font-bold">25</div>
           </a>

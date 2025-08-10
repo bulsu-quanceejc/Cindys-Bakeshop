@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Finance Dashboard - Cindy's Bakeshop</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
       body {
@@ -143,26 +144,19 @@
       }
     </style>
   </head>
-  <body>
-    <div class="sidebar">
-      <h2>CINDY'S</h2>
-      <ul>
-        <li><a href="admin_dash.html">Dashboard</a></li>
-        <li><a href="orders.html">Orders</a></li>
-        <li><a href="product.html">Products</a></li>
-        <li><a href="user.html">Users</a></li>
-        <li><a href="reports.html">Reports</a></li>
-        <li><a href="finance.html" class="active">Finance</a></li>
-      </ul>
-    </div>
+    <body class="bg-white">
+      <div class="flex h-screen overflow-hidden">
+        <?php
+        $activePage = 'finance';
+        include '../sidebar.php';
+        ?>
+        <main class="flex-1 overflow-y-auto">
+        <div class="header">
+          <h3>Finance Transaction Records</h3>
+          <div>🔔 👤</div>
+        </div>
 
-    <div class="main">
-      <div class="header">
-        <h3>Finance Transaction Records</h3>
-        <div>🔔 👤</div>
-      </div>
-
-      <div class="chart-section">
+        <div class="chart-section">
         <div class="chart-wrapper">
           <canvas id="barChart"></canvas>
         </div>
@@ -232,7 +226,8 @@
           </tr>
         </tbody>
       </table>
-    </div>
+        </main>
+      </div>
 
     <script>
       const barCtx = document.getElementById("barChart").getContext("2d");
