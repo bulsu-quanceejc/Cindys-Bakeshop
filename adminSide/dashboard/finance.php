@@ -12,53 +12,7 @@
         background: #f5f5f5;
       }
 
-      .sidebar {
-        width: 100px;
-        background: #fff;
-        height: 100vh;
-        position: fixed;
-        border-right: 1px solid #ccc;
-        padding: 20px;
-      }
-
-      .sidebar h2 {
-        color: red;
-      }
-
-      .sidebar ul {
-        list-style: none;
-        padding: 0;
-      }
-
-      .sidebar ul li {
-        margin: 20px 0;
-      }
-
-      .sidebar ul li a {
-        text-decoration: none;
-        color: #333;
-        display: block;
-        padding: 10px;
-        border-radius: 6px;
-        transition: background 0.2s;
-      }
-
-      .sidebar ul li a:hover {
-        background: #ffe600;
-        color: #000;
-        font-weight: bold;
-      }
-
-      .sidebar ul li a.active {
-        background: #d6f5d6;
-        color: green;
-        font-weight: bold;
-      }
-
-      .main {
-        margin-left: 150px;
-        padding: 20px;
-      }
+      /* Sidebar handled by shared component */
 
       .header {
         background: #ffe600;
