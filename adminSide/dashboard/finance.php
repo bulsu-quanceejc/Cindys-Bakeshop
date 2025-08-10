@@ -14,8 +14,8 @@
         include '../sidebar.php';
         ?>
         <main class="flex-1 overflow-y-auto">
-          <div class="bg-yellow-400 p-4 flex justify-between items-center">
-            <h3>Finance Transaction Records</h3>
+          <div class="header-bar">
+            <h1>Finance Transaction Records</h1>
             <div>🔔 👤</div>
           </div>
 

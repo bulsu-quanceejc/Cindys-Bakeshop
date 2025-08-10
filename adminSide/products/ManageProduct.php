@@ -15,7 +15,7 @@ include '../sidebar.php';
 
 <!-- Main -->
 <main class="main flex-1 overflow-y-auto">
-  <div class="topbar">Manage Products</div>
+  <div class="header-bar"><h1>Manage Products</h1></div>
   <div class="content">
     <div class="toolbar">
       <input type="text" id="search" placeholder="Search product name...">

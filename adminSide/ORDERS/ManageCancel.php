@@ -17,8 +17,8 @@
 
     <!-- Main Content -->
     <main class="flex-1 overflow-y-auto">
-      <div class="bg-yellow-400 p-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold text-white uppercase">Cancellations</h1>
+      <div class="header-bar">
+        <h1>Cancellations</h1>
         <div class="flex gap-4 items-center">
           <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round"

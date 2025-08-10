@@ -14,8 +14,8 @@
       include '../sidebar.php';
       ?>
       <main class="flex-1 overflow-y-auto">
-        <div class="bg-yellow-400 p-4 flex justify-between items-center text-white">
-          <div><strong>Product ratings</strong></div>
+        <div class="header-bar">
+          <h1>Product Ratings</h1>
           <img src="https://i.imgur.com/1Q2Z1ZL.png" alt="User" class="h-8 w-8 rounded-full">
         </div>
 

@@ -10,6 +10,24 @@ body {
   transform: translateX(2px);
 }
 
+/* Shared header bar */
+.header-bar {
+  background-color: #facc15;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-bar h1,
+.header-bar h2,
+.header-bar h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+}
+
 /* Table styling */
 .table {
   width: 100%;
@@ -196,13 +214,6 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
-.manage-product .topbar {
-  background-color: #ffe600;
-  padding: 1rem 2rem;
-  font-weight: bold;
-  font-size: 18px;
-  border-bottom: 1px solid #ccc;
-}
 .manage-product .content {
   padding: 20px;
 }
@@ -356,13 +367,6 @@ body {
 /* Inventory Report page */
 .inventory-report .main {
   flex: 1;
-}
-.inventory-report .topbar {
-  background-color: #ffe600;
-  padding: 15px 20px;
-  font-weight: bold;
-  font-size: 18px;
-  border-bottom: 1px solid #ccc;
 }
 .inventory-report .content {
   padding: 20px;

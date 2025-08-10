@@ -15,7 +15,7 @@
 
   <!-- Main -->
   <main class="main flex-1 overflow-y-auto">
-    <div class="topbar">Inventory Report</div>
+    <div class="header-bar"><h1>Inventory Report</h1></div>
     <div class="content">
       <div class="search-bar">
         <input type="text" id="searchInput" placeholder="Search product..." onkeyup="filterInventory()">
