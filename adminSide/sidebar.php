@@ -3,7 +3,7 @@ $activePage = $activePage ?? '';
 ?>
 <aside class="w-64 bg-white border-r border-gray-200 p-4 overflow-y-auto">
   <div class="text-center mb-6">
-    <img src="../images/cindy's logo.png" alt="CINDY'S" class="mx-auto h-12">
+    <img src="../images/cindy's logo.png" alt="CINDY'S" class="mx-auto">
     <p class="text-sm text-red-600 font-semibold mt-2">Give your sweet tooth a treat</p>
   </div>
   <nav class="space-y-2 text-sm font-medium">
