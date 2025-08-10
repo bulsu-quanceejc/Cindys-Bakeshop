@@ -124,6 +124,8 @@
       height: 100px;
       object-fit: cover;
       border-radius: 10px;
+      display: block;
+      margin: 0 auto;
     }
     .stock {
       margin: 8px 0;
@@ -284,7 +286,7 @@ const products = [
 
       grid.innerHTML += `
         <div class="product-card">
-          <img src="${p.image}" alt="${p.name}">
+          <img src="${p.image}" alt="${p.name}" loading="lazy">
           <div class="price">${p.price}</div>
           <div class="stock ${stockClass}">Stock: ${p.stock}</div>
           <div style="font-weight: bold;">${p.name}</div>
