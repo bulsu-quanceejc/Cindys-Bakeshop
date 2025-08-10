@@ -190,11 +190,6 @@ body {
 }
 
 /* Manage Product page */
-.manage-product * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 .manage-product .main {
   flex: 1;
   display: flex;
@@ -286,63 +281,6 @@ body {
 }
 
 /* Sales Report page */
-.sales-report * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-.sales-report .sidebar {
-  width: 240px;
-  background-color: #ffffff;
-  height: 100vh;
-  border-right: 1px solid #ddd;
-  padding: 1rem;
-  overflow-y: auto;
-}
-.sales-report .sidebar .logo {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-.sales-report .sidebar .logo img {
-  height: 48px;
-}
-.sales-report .sidebar .logo p {
-  font-size: 0.85rem;
-  color: #dc2626;
-  font-weight: bold;
-  margin-top: 0.3rem;
-}
-.sales-report .sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  font-size: 0.95rem;
-}
-.sales-report .sidebar a {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  text-decoration: none;
-  color: #000;
-  border-radius: 6px;
-  transition: 0.2s ease;
-}
-.sales-report .sidebar a:hover {
-  background-color: #f3f4f6;
-}
-.sales-report .submenu {
-  margin-left: 1.5rem;
-  display: none;
-  flex-direction: column;
-}
-.sales-report .submenu a {
-  padding: 0.3rem 0.5rem;
-  border-radius: 4px;
-}
-.sales-report .submenu a:hover {
-  background-color: #e5e7eb;
-}
 .sales-report .main {
   flex: 1;
 }
@@ -416,69 +354,8 @@ body {
 }
 
 /* Inventory Report page */
-.inventory-report * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-.inventory-report .sidebar {
-  width: 240px;
-  background-color: #ffffff;
-  height: 100vh;
-  border-right: 1px solid #ddd;
-  padding: 1rem;
-  overflow-y: auto;
-  position: fixed;
-  left: 0;
-  top: 0;
-}
-.inventory-report .sidebar .logo {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-.inventory-report .sidebar .logo img {
-  height: 48px;
-}
-.inventory-report .sidebar .logo p {
-  font-size: 0.85rem;
-  color: #dc2626;
-  font-weight: bold;
-  margin-top: 0.3rem;
-}
-.inventory-report .sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  font-size: 0.95rem;
-}
-.inventory-report .sidebar a {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  text-decoration: none;
-  color: #000;
-  border-radius: 6px;
-  transition: 0.2s ease;
-}
-.inventory-report .sidebar a:hover {
-  background-color: #f3f4f6;
-}
-.inventory-report .submenu {
-  margin-left: 1.5rem;
-  display: none;
-  flex-direction: column;
-}
-.inventory-report .submenu a {
-  padding: 0.3rem 0.5rem;
-  border-radius: 4px;
-}
-.inventory-report .submenu a:hover {
-  background-color: #e5e7eb;
-}
 .inventory-report .main {
-  margin-left: 240px;
-  width: calc(100% - 240px);
+  flex: 1;
 }
 .inventory-report .topbar {
   background-color: #ffe600;
