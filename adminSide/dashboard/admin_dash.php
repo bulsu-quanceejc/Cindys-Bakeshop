@@ -5,53 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cindy's Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/admin.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .sidebar-link:hover {
-      background-color: #f3f4f6;
-      transform: translateX(2px);
-    }
-
-    .top-header {
-      background-color: #facc15;
-      height: 150px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      position: relative;
-    }
-
-    .header-stats-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10rem;
-      background-color: white;
-      border-radius: 0.75rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      padding: 1.25rem .5rem;
-      max-width: 72rem;
-      width: 100%;
-      font-size: 0.875rem;
-      justify-content: space-around;
-      margin-top: 5rem;
-      margin-left: 5rem;
-      margin-right: auto;
-    }
-
-    .avatar-wrapper {
-      margin-left: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      position: relative;
-    }
-  </style>
 </head>
-<body class="bg-gray-100">
+  <body class="dashboard-page">
   <div class="flex min-h-screen">
     <?php
     $activePage = 'dashboard';

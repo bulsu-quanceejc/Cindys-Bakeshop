@@ -4,121 +4,10 @@
   <meta charset="UTF-8">
   <title>Users - Cindy’s Bakeshop</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background: #f5f5f5;
-    }
-
-    .sidebar {
-      width: 200px;
-      background: #fff;
-      height: 100vh;
-      position: fixed;
-      border-right: 1px solid #ccc;
-      padding: 20px;
-    }
-
-    .sidebar h2 {
-      color: red;
-    }
-
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .sidebar ul li a {
-      text-decoration: none;
-      color: #333;
-      display: block;
-      padding: 10px;
-      border-radius: 6px;
-      margin-bottom: 10px;
-      transition: background 0.2s;
-    }
-
-    .sidebar ul li a:hover {
-      background: #ffe600;
-      color: #000;
-      font-weight: bold;
-    }
-
-    .sidebar ul li a.active {
-      background: #d6f5d6;
-      color: green;
-      font-weight: bold;
-    }
-
-    .main {
-      margin-left: 220px;
-      padding: 20px;
-    }
-
-    .header {
-      background: #ffe600;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .tabs {
-      margin-top: 20px;
-    }
-
-    .tab-button {
-      background: #eee;
-      border: 1px solid #ccc;
-      padding: 8px 16px;
-      margin-right: 10px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .tab-button.active {
-      background: #ffdddd;
-      color: red;
-      border: 1px solid red;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-      margin-top: 20px;
-    }
-
-    th, td {
-      padding: 12px;
-      border: 1px solid #ccc;
-      text-align: center;
-    }
-
-    .unblock-btn {
-      padding: 6px 12px;
-      background: #28a745;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .unblock-btn:hover {
-      background: #218838;
-    }
-    table select {
-  padding: 6px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-  </style>
+  <link rel="stylesheet" href="../css/admin.css">
 </head>
 
-<body class="bg-white">
+  <body class="users-page">
   <div class="flex h-screen overflow-hidden">
     <?php
     $activePage = 'users';
@@ -150,7 +39,7 @@
             <option value="Ube Macapuno Cake">Ube Macapuno Cake</option>
           </select>
         </div>
-        <table id="usersTable" class="w-full text-sm text-left bg-white rounded shadow">
+        <table id="usersTable" class="table w-full text-sm text-left bg-white rounded shadow">
           <thead class="border-b">
             <tr>
               <th class="py-2">Name</th>

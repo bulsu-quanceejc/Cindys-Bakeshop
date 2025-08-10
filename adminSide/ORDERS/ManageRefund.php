@@ -5,24 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Manage Refunds</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    .sidebar-link:hover {
-      background-color: #f3f4f6;
-    }
-    .btn-filter {
-      padding: 6px 12px;
-      font-size: 0.875rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .btn-active {
-      background-color: #16a34a;
-      color: white;
-      font-weight: bold;
-    }
-  </style>
+  <link rel="stylesheet" href="../css/admin.css">
 </head>
-<body class="bg-white">
+<body>
   <div class="flex h-screen overflow-hidden">
 
     <?php
@@ -54,7 +39,7 @@
             <button class="btn-filter" onclick="filterRefunds('rejected', this)">Rejected</button>
             <button onclick="exportRefunds()" class="ml-auto bg-gray-300 px-4 py-1 rounded text-sm font-semibold">Export CSV</button>
           </div>
-          <table class="w-full text-sm text-left">
+          <table class="table w-full text-sm text-left">
             <thead class="border-b">
               <tr>
                 <th>✓</th>

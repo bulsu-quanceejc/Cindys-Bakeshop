@@ -3,158 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <title>Finance Dashboard - Cindy's Bakeshop</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-      body {
-        font-family: "Segoe UI", sans-serif;
-        margin: 0;
-        background: #f5f5f5;
-      }
-
-      .sidebar {
-        width: 100px;
-        background: #fff;
-        height: 100vh;
-        position: fixed;
-        border-right: 1px solid #ccc;
-        padding: 20px;
-      }
-
-      .sidebar h2 {
-        color: red;
-      }
-
-      .sidebar ul {
-        list-style: none;
-        padding: 0;
-      }
-
-      .sidebar ul li {
-        margin: 20px 0;
-      }
-
-      .sidebar ul li a {
-        text-decoration: none;
-        color: #333;
-        display: block;
-        padding: 10px;
-        border-radius: 6px;
-        transition: background 0.2s;
-      }
-
-      .sidebar ul li a:hover {
-        background: #ffe600;
-        color: #000;
-        font-weight: bold;
-      }
-
-      .sidebar ul li a.active {
-        background: #d6f5d6;
-        color: green;
-        font-weight: bold;
-      }
-
-      .main {
-        margin-left: 150px;
-        padding: 20px;
-      }
-
-      .header {
-        background: #ffe600;
-        padding: 10px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .card {
-        display: flex;
-        justify-content: flex-start;
-        gap: 20px;
-        margin: 20px 0;
-        align-items: flex-start;
-      }
-
-      canvas {
-        background: #fff;
-        border: 1px solid #ccc;
-        padding: 10px;
-      }
-
-      .controls {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 10px;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        background: #fff;
-      }
-
-      th,
-      td {
-        padding: 10px;
-        border: 1px solid #ccc;
-        text-align: center;
-      }
-
-      select,
-      input[type="date"],
-      input[type="text"] {
-        padding: 6px;
-        border: 1px solid #aaa;
-        border-radius: 4px;
-      }
-
-      .export-btn {
-        background: #007bff;
-        color: white;
-        padding: 6px 10px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-
-      .filter-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 5px 0;
-      }
-      .chart-section {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 20px;
-        margin-top: 20px;
-        text-align: center;
-      }
-
-      .chart-wrapper {
-        background: transparent;
-        border: none;
-        padding: 10px;
-        flex: 1 1 300px;
-        min-width: 250px;
-        max-width: 400px;
-      }
-    </style>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="../css/admin.css">
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
-    <body class="bg-white">
+      <body class="finance-page">
       <div class="flex h-screen overflow-hidden">
         <?php
         $activePage = 'finance';
         include '../sidebar.php';
         ?>
         <main class="flex-1 overflow-y-auto">
-        <div class="header">
-          <h3>Finance Transaction Records</h3>
-          <div>🔔 👤</div>
-        </div>
+          <div class="bg-yellow-400 p-4 flex justify-between items-center">
+            <h3>Finance Transaction Records</h3>
+            <div>🔔 👤</div>
+          </div>
 
         <div class="chart-section">
         <div class="chart-wrapper">

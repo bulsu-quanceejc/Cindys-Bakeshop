@@ -5,17 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Manage Cancellations</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    .sidebar-link:hover {
-      background-color: #f3f4f6;
-    }
-    .tab-active {
-      font-weight: bold;
-      color: #16a34a;
-    }
-  </style>
+  <link rel="stylesheet" href="../css/admin.css">
 </head>
-<body class="bg-white">
+<body>
   <div class="flex h-screen overflow-hidden">
 
     <?php
@@ -47,7 +39,7 @@
             <button class="bg-green-200 px-4 py-1 rounded text-sm" onclick="filterCancellations('approved')">Approved</button>
             <button class="bg-red-200 px-4 py-1 rounded text-sm" onclick="filterCancellations('rejected')">Rejected</button>
           </div>
-          <table class="w-full text-sm text-left">
+          <table class="table w-full text-sm text-left">
             <thead class="border-b">
               <tr>
                 <th>✓</th>
