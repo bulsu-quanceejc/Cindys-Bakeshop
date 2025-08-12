@@ -11,6 +11,15 @@
   <?php
   $activePage = 'reports';
   include '../sidebar.php';
+  require_once '../../PHP/db_connect.php';
+  require_once '../../PHP/inventory_functions.php';
+
+  $inventoryRows = getInventoryWithProducts($pdo);
+  $inventoryData = [];
+  foreach ($inventoryRows as $row) {
+      $category = $row['Category'] ?? 'Uncategorized';
+      $inventoryData[$category][] = [$row['Name'], (int)$row['Stock_Quantity']];
+  }
   ?>
 
   <!-- Main -->
@@ -32,41 +41,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
 
-    const inventoryData = {
-      Bread: [
-        ["Taisan Soft Cake", 0], ["Ubeng Ube Loaf", 5], ["Pandecoconut", 12],
-        ["Pande esapana", 8], ["Mamon Cup", 10], ["Delightful Treats Choco", 7],
-        ["Crinkles Cokie", 6], ["Pinoy Tasty", 15], ["Jumbo Sandwich Loaf", 6],
-        ["Wheat Bread", 5]
-      ],
-      Pastry: [
-        ["Egg Pie Leche Plan", 0], ["Brownie Bites", 3], ["Custard Surprise", 9],
-        ["Cluster Ensaymada Ube with Cheese", 11], ["Mini Cinamon Roll", 5],
-        ["Ensaymada Cheese", 10], ["Snap n’ roll", 8], ["Cheesy Ensaymada", 9],
-        ["Egg pie caramel", 14], ["Cheesy Butter Softy", 18], ["Mamon", 6],
-        ["Choco Bar", 7], ["Ensaymada Ube", 11]
-      ],
-      Cakes: [
-        ["Choco Cherry Cake", 0], ["Creamy Choco Cake", 2], ["Chocolate Cake", 10],
-        ["Moist Cake", 14], ["Pastel Delight Round Cake", 9],
-        ["Mocha Celebration Cake Round", 8], ["Junior Cake, Ube Temptation", 9],
-        ["Choco Celebration On Cake Round", 7], ["Yema Round Celebration On Cake", 9],
-        ["Choco Caramel Cake", 7], ["Mocha Celebration On Cake Rectangle", 6],
-        ["Ube Macapuno Cake", 6], ["Yema Rectangle Celebration On Cake", 4],
-        ["Roll Choco Fudge", 8], ["Roll, Ube Macapuno", 14],
-        ["Roll, Nutty Caramel Cake", 18], ["Junior Cake, Mango Cream Deluxe", 12],
-        ["Choco Celebration On Cake Rectangle", 13],
-        ["Butterfly Sanctuary", null], ["Beauty Cake", null], ["Space Adventure", null],
-        ["Glitz’n Glam Cake", null], ["Flamingo Cake", null], ["Enchanted Cake", null],
-        ["Candy Drizzle Cake", null], ["Cat Castle Cake", null], ["Peppa Cake", null],
-        ["Ice Cream Heaven Cake", null], ["Rainbow Unicorn", null], ["Princess Cake", null],
-        ["Blooming Flower Cake", null], ["Elephant Cake", null], ["Racers Cake", null],
-        ["Detective Cake", null], ["Nautical Cake", null], ["Sea Adventure Cake", null],
-        ["Jungle Explore Cake", null], ["Nursery Cake", null], ["Spider Web Cake", null],
-        ["Unicorn Cake", null], ["Sonic Speed Cake", null], ["Minecraft Kindom Cake", null],
-        ["Build The Party", null]
-      ]
-    };
+    const inventoryData = <?php echo json_encode($inventoryData); ?>;
 
     function buildInventoryTables() {
       const container = document.getElementById("inventoryContainer");
