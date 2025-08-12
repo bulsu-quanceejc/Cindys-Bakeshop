@@ -27,6 +27,16 @@ function getAllInventory($pdo) {
     return $stmt->fetchAll();
 }
 
+// 3b) Get inventory with product details
+function getInventoryWithProducts($pdo) {
+    $stmt = $pdo->query(
+        "SELECT p.Name, p.Category, i.Stock_Quantity\n" .
+        "FROM Inventory i\n" .
+        "JOIN Product p ON i.Product_ID = p.Product_ID"
+    );
+    return $stmt->fetchAll();
+}
+
 // 4) Update stock quantity for a product
 function updateInventoryStock($pdo, $productId, $stockQuantity) {
     $stmt = $pdo->prepare("
