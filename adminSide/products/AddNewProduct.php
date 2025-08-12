@@ -24,7 +24,7 @@
       </div>
       <div class="p-6">
         <a href="ManageProduct.php" class="text-blue-600 hover:underline">&larr; Back to Products</a>
-        <form class="mt-4 space-y-4">
+        <form class="mt-4 space-y-4" method="POST" action="../../PHP/product_add.php" enctype="multipart/form-data">
           <div>
             <label for="productName" class="block font-semibold">Product Name</label>
             <input type="text" id="productName" name="productName" class="w-full border rounded px-2 py-1">
