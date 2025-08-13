@@ -129,4 +129,41 @@ function countProducts($pdo) {
     $stmt = $pdo->query("SELECT COUNT(*) FROM Product");
     return $stmt->fetchColumn();
 }
+
+// --- API Endpoints -------------------------------------------------------
+// Allows this file to handle update, delete, and list operations via AJAX.
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    require_once __DIR__ . '/db_connect.php';
+    header('Content-Type: application/json');
+
+    switch ($_POST['action']) {
+        case 'update':
+            $id = $_POST['product_id'] ?? 0;
+            $name = $_POST['name'] ?? '';
+            $description = $_POST['description'] ?? '';
+            $price = $_POST['price'] ?? 0;
+            $stock = $_POST['stock_quantity'] ?? 0;
+            $category = $_POST['category'] ?? '';
+            $imageFile = $_FILES['image'] ?? null;
+            $success = updateProductById($pdo, $id, $name, $description, $price, $stock, $category, $imageFile) > 0;
+            echo json_encode(['success' => $success]);
+            break;
+
+        case 'delete':
+            $id = $_POST['product_id'] ?? 0;
+            $success = deleteProductById($pdo, $id) > 0;
+            echo json_encode(['success' => $success]);
+            break;
+
+        case 'getAll':
+            $products = getAllProducts($pdo);
+            echo json_encode($products);
+            break;
+
+        default:
+            echo json_encode(['success' => false, 'message' => 'Invalid action']);
+            break;
+    }
+    exit;
+}
 ?>
