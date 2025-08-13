@@ -6,13 +6,29 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/admin.css">
 </head>
-<body>
-  <div class="flex h-screen overflow-hidden">
-    <?php
-    $activePage = 'products';
-    include '../sidebar.php';
-    ?>
-    <main class="flex-1 overflow-y-auto">
+  <body>
+    <div class="flex h-screen overflow-hidden">
+      <?php
+      require '../../PHP/db_connect.php';
+      require '../../PHP/product_functions.php';
+
+      $message = '';
+      if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+          $name = $_POST['productName'] ?? '';
+          $category = $_POST['category'] ?? '';
+          $description = $_POST['description'] ?? '';
+          $price = $_POST['price'] ?? 0;
+          $quantity = $_POST['quantity'] ?? 0;
+          $imageFile = $_FILES['image'] ?? null;
+
+          addProduct($pdo, $name, $description, $price, $quantity, $category, $imageFile);
+          $message = 'Product added successfully.';
+      }
+
+      $activePage = 'products';
+      include '../sidebar.php';
+      ?>
+      <main class="flex-1 overflow-y-auto">
       <div class="header-bar">
         <h1>Add New Product</h1>
         <div class="flex gap-4 items-center">
@@ -23,8 +39,9 @@
         </div>
       </div>
       <div class="p-6">
-        <a href="ManageProduct.php" class="text-blue-600 hover:underline">&larr; Back to Products</a>
-        <form class="mt-4 space-y-4">
+          <a href="ManageProduct.php" class="text-blue-600 hover:underline">&larr; Back to Products</a>
+          <?php if ($message) { echo '<p class="text-green-600">' . htmlspecialchars($message) . '</p>'; } ?>
+          <form class="mt-4 space-y-4" method="POST" enctype="multipart/form-data">
           <div>
             <label for="productName" class="block font-semibold">Product Name</label>
             <input type="text" id="productName" name="productName" class="w-full border rounded px-2 py-1">
