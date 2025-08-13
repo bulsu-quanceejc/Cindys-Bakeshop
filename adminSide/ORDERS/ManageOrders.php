@@ -44,7 +44,7 @@
             <input type="text" id="searchOrder" placeholder="Search Order ID" class="border rounded px-2 py-1 text-sm">
             <input type="date" class="border rounded px-2 py-1 text-sm">
             <input type="date" class="border rounded px-2 py-1 text-sm">
-            <button class="bg-gray-300 px-4 py-1 rounded text-sm">Export Orders</button>
+            <a href="../../PHP/export_orders_csv.php" class="bg-gray-300 px-4 py-1 rounded text-sm">Export Orders</a>
           </div>
           <div class="flex space-x-4 mb-2 text-sm">
             <button onclick="filterOrders('all')" class="tab-active">All</button>
