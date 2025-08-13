@@ -13,6 +13,19 @@
     <?php
     $activePage = 'orders';
     include '../sidebar.php';
+
+    require_once '../../PHP/db_connect.php';
+    require_once '../../PHP/refund_functions.php';
+
+    // Handle status updates
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['refund_id'])) {
+        $newStatus = $_POST['action'] === 'approve' ? 'Approved' : 'Rejected';
+        updateRefundStatus($pdo, (int)$_POST['refund_id'], $newStatus);
+        header('Location: ManageRefund.php');
+        exit;
+    }
+
+    $refunds = getAllRefunds($pdo);
     ?>
 
     <!-- Main Content -->
@@ -53,19 +66,39 @@
               </tr>
             </thead>
             <tbody id="refundTable">
-              <tr data-status="pending">
+            <?php foreach ($refunds as $refund):
+              $status = strtolower($refund['Status']);
+              $statusClass = '';
+              if ($status === 'pending') { $statusClass = 'text-yellow-500'; }
+              elseif ($status === 'approved') { $statusClass = 'text-green-500'; }
+              elseif ($status === 'rejected') { $statusClass = 'text-red-500'; }
+            ?>
+              <tr data-status="<?= $status ?>">
                 <td><input type="checkbox"></td>
-                <td>RF001</td>
-                <td>00005</td>
-                <td>Maria Clara</td>
-                <td>Product damaged</td>
-                <td>2025-07-03</td>
-                <td class="text-yellow-500 font-medium">Pending</td>
+                <td><?= 'RF' . sprintf('%03d', $refund['Refund_ID']); ?></td>
+                <td><?= sprintf('%05d', $refund['Order_ID']); ?></td>
+                <td><?= htmlspecialchars($refund['Customer'] ?? 'User ' . $refund['User_ID']); ?></td>
+                <td><?= htmlspecialchars($refund['Reason']); ?></td>
+                <td><?= htmlspecialchars($refund['Refund_Date']); ?></td>
+                <td class="<?= $statusClass ?> font-medium"><?= htmlspecialchars($refund['Status']); ?></td>
                 <td>
-                  <button onclick="approveRefund(this)" class="text-green-600 text-xs">Approve</button>
-                  <button onclick="rejectRefund(this)" class="text-red-600 text-xs ml-2">Reject</button>
+                <?php if ($status === 'pending'): ?>
+                  <form method="post" style="display:inline">
+                    <input type="hidden" name="refund_id" value="<?= $refund['Refund_ID']; ?>">
+                    <input type="hidden" name="action" value="approve">
+                    <button type="submit" class="text-green-600 text-xs">Approve</button>
+                  </form>
+                  <form method="post" style="display:inline">
+                    <input type="hidden" name="refund_id" value="<?= $refund['Refund_ID']; ?>">
+                    <input type="hidden" name="action" value="reject">
+                    <button type="submit" class="text-red-600 text-xs ml-2">Reject</button>
+                  </form>
+                <?php else: ?>
+                  <span class="text-gray-500 italic text-xs">Completed</span>
+                <?php endif; ?>
                 </td>
               </tr>
+            <?php endforeach; ?>
             </tbody>
           </table>
         </div>
@@ -74,23 +107,14 @@
   </div>
 
   <script>
-    function approveRefund(btn) {
-      const row = btn.closest('tr');
-      row.dataset.status = 'approved';
-      const statusCell = row.querySelector('td:nth-child(7)');
-      statusCell.innerHTML = `<span class="text-green-500 font-medium">✔ Approved</span>`;
-      const actionCell = row.querySelector('td:nth-child(8)');
-      actionCell.innerHTML = `<span class="text-gray-500 italic text-xs">Completed</span>`;
-    }
-
-    function rejectRefund(btn) {
-      const row = btn.closest('tr');
-      row.dataset.status = 'rejected';
-      const statusCell = row.querySelector('td:nth-child(7)');
-      statusCell.innerHTML = `<span class="text-red-500 font-medium">✖ Rejected</span>`;
-      const actionCell = row.querySelector('td:nth-child(8)');
-      actionCell.innerHTML = `<span class="text-gray-500 italic text-xs">Completed</span>`;
-    }
+    document.getElementById('searchRefund').addEventListener('input', function() {
+      const term = this.value.toLowerCase();
+      const rows = document.querySelectorAll('#refundTable tr');
+      rows.forEach(row => {
+        const orderId = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+        row.style.display = orderId.includes(term) ? '' : 'none';
+      });
+    });
 
     function filterRefunds(status, clickedBtn) {
       const rows = document.querySelectorAll('#refundTable tr');
