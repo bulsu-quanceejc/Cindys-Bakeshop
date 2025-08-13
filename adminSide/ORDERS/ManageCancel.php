@@ -13,6 +13,19 @@
     <?php
     $activePage = 'orders';
     include '../sidebar.php';
+
+    require_once '../../PHP/db_connect.php';
+    require_once '../../PHP/order_cancellation_functions.php';
+
+    // Handle status updates
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'], $_POST['cancel_id'])) {
+        $newStatus = $_POST['action'] === 'approve' ? 'Approved' : 'Rejected';
+        updateOrderCancellationStatus($pdo, (int)$_POST['cancel_id'], $newStatus);
+        header('Location: ManageCancel.php');
+        exit;
+    }
+
+    $cancellations = getAllOrderCancellations($pdo);
     ?>
 
     <!-- Main Content -->
@@ -53,19 +66,39 @@
               </tr>
             </thead>
             <tbody id="cancelTable">
-              <tr data-status="pending">
+            <?php foreach ($cancellations as $cancel):
+              $status = strtolower($cancel['Status']);
+              $statusClass = '';
+              if ($status === 'pending') { $statusClass = 'text-yellow-500'; }
+              elseif ($status === 'approved') { $statusClass = 'text-green-500'; }
+              elseif ($status === 'rejected') { $statusClass = 'text-red-500'; }
+            ?>
+              <tr data-status="<?= $status ?>">
                 <td><input type="checkbox"></td>
-                <td>CN001</td>
-                <td>00001</td>
-                <td>Mariel Balanac</td>
-                <td>Wrong item</td>
-                <td>2025-07-01</td>
-                <td class="text-yellow-500 font-medium">Pending</td>
+                <td><?= 'CN' . sprintf('%03d', $cancel['Cancellation_ID']); ?></td>
+                <td><?= sprintf('%05d', $cancel['Order_ID']); ?></td>
+                <td><?= htmlspecialchars($cancel['Customer'] ?? 'User ' . $cancel['User_ID']); ?></td>
+                <td><?= htmlspecialchars($cancel['Reason']); ?></td>
+                <td><?= htmlspecialchars($cancel['Cancellation_Date']); ?></td>
+                <td class="<?= $statusClass ?> font-medium"><?= htmlspecialchars($cancel['Status']); ?></td>
                 <td>
-                  <button onclick="approveCancel(this)" class="text-green-600 text-xs">Approve</button>
-                  <button onclick="rejectCancel(this)" class="text-red-600 text-xs ml-2">Reject</button>
+                <?php if ($status === 'pending'): ?>
+                  <form method="post" style="display:inline">
+                    <input type="hidden" name="cancel_id" value="<?= $cancel['Cancellation_ID']; ?>">
+                    <input type="hidden" name="action" value="approve">
+                    <button type="submit" class="text-green-600 text-xs">Approve</button>
+                  </form>
+                  <form method="post" style="display:inline">
+                    <input type="hidden" name="cancel_id" value="<?= $cancel['Cancellation_ID']; ?>">
+                    <input type="hidden" name="action" value="reject">
+                    <button type="submit" class="text-red-600 text-xs ml-2">Reject</button>
+                  </form>
+                <?php else: ?>
+                  <span class="text-gray-500 italic text-xs">Completed</span>
+                <?php endif; ?>
                 </td>
               </tr>
+            <?php endforeach; ?>
             </tbody>
           </table>
         </div>
@@ -75,22 +108,6 @@
 
   <!-- Scripts -->
   <script>
-    function approveCancel(btn) {
-      const row = btn.closest('tr');
-      row.dataset.status = 'approved';
-      const statusCell = row.querySelector('td:nth-child(7)');
-      statusCell.textContent = 'Approved';
-      statusCell.className = 'text-green-500 font-medium';
-    }
-
-    function rejectCancel(btn) {
-      const row = btn.closest('tr');
-      row.dataset.status = 'rejected';
-      const statusCell = row.querySelector('td:nth-child(7)');
-      statusCell.textContent = 'Rejected';
-      statusCell.className = 'text-red-500 font-medium';
-    }
-
     function filterCancellations(status) {
       const rows = document.querySelectorAll('#cancelTable tr');
       rows.forEach(row => {
