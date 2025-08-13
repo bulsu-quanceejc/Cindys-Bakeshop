@@ -14,6 +14,13 @@
     <?php
     $activePage = 'orders';
     include '../sidebar.php';
+
+    require_once '../../PHP/db_connect.php';
+    require_once '../../PHP/order_functions.php';
+    require_once '../../PHP/order_item_functions.php';
+    require_once '../../PHP/user_functions.php';
+
+    $orders = getAllOrders($pdo);
     ?>
 
     <!-- Main Content -->
@@ -41,9 +48,9 @@
           </div>
           <div class="flex space-x-4 mb-2 text-sm">
             <button onclick="filterOrders('all')" class="tab-active">All</button>
-            <button onclick="filterOrders('to process')" class="text-blue-600">To Process</button>
+            <button onclick="filterOrders('pending')" class="text-blue-600">Pending</button>
             <button onclick="filterOrders('shipped')" class="text-blue-600">Shipped</button>
-            <button onclick="filterOrders('completed')" class="text-blue-600">Completed</button>
+            <button onclick="filterOrders('delivered')" class="text-blue-600">Delivered</button>
           </div>
           <table class="table w-full text-sm text-left">
             <thead class="border-b">
@@ -58,33 +65,27 @@
               </tr>
             </thead>
             <tbody id="orderTable">
-              <tr data-status="to process">
+            <?php foreach ($orders as $order):
+              $user = getUserById($pdo, $order['User_ID']);
+              $items = getOrderItemsByOrderId($pdo, $order['Order_ID']);
+              $itemCount = count($items);
+              $total = calculateOrderTotal($pdo, $order['Order_ID']);
+              $status = strtolower($order['Status']);
+              $statusClass = '';
+              if ($status === 'pending') { $statusClass = 'text-yellow-500'; }
+              elseif ($status === 'shipped') { $statusClass = 'text-blue-500'; }
+              elseif ($status === 'delivered') { $statusClass = 'text-green-500'; }
+            ?>
+              <tr data-status="<?= $status ?>">
                 <td><input type="checkbox"></td>
-                <td>00001</td>
-                <td>Mariel Balanac</td>
-                <td>Ensaymada Ube</td>
-                <td>₱699.00</td>
-                <td class="text-yellow-500 font-medium">To Process</td>
+                <td><?= sprintf('%05d', $order['Order_ID']); ?></td>
+                <td><?= htmlspecialchars($user['Name'] ?? 'User '.$order['User_ID']); ?></td>
+                <td><?= $itemCount; ?> item<?= $itemCount === 1 ? '' : 's'; ?></td>
+                <td>₱<?= number_format($total ?? 0, 2); ?></td>
+                <td class="<?= $statusClass ?> font-medium"><?= htmlspecialchars($order['Status']); ?></td>
                 <td class="text-blue-500 cursor-pointer">View</td>
               </tr>
-              <tr data-status="shipped">
-                <td><input type="checkbox"></td>
-                <td>00002</td>
-                <td>Juan Dela Cruz</td>
-                <td>Pandesal Box</td>
-                <td>₱250.00</td>
-                <td class="text-blue-500 font-medium">Shipped</td>
-                <td class="text-blue-500 cursor-pointer">View</td>
-              </tr>
-              <tr data-status="completed">
-                <td><input type="checkbox"></td>
-                <td>00003</td>
-                <td>Anna Reyes</td>
-                <td>Cheese Roll</td>
-                <td>₱320.00</td>
-                <td class="text-green-500 font-medium">Completed</td>
-                <td class="text-blue-500 cursor-pointer">View</td>
-              </tr>
+            <?php endforeach; ?>
             </tbody>
           </table>
         </div>
