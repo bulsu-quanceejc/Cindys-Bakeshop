@@ -42,8 +42,8 @@
         <div class="bg-white p-4 rounded shadow">
           <div class="flex items-center gap-4 mb-4">
             <input type="text" id="searchOrder" placeholder="Search Order ID" class="border rounded px-2 py-1 text-sm">
-            <input type="date" class="border rounded px-2 py-1 text-sm">
-            <input type="date" class="border rounded px-2 py-1 text-sm">
+            <input type="date" id="startDate" class="border rounded px-2 py-1 text-sm">
+            <input type="date" id="endDate" class="border rounded px-2 py-1 text-sm">
             <a href="../../PHP/export_orders_csv.php" class="bg-gray-300 px-4 py-1 rounded text-sm">Export Orders</a>
           </div>
           <div class="flex space-x-4 mb-2 text-sm">
@@ -57,6 +57,7 @@
               <tr>
                 <th class="py-2">✓</th>
                 <th>Order ID</th>
+                <th>Order Date</th>
                 <th>Customer</th>
                 <th>Items</th>
                 <th>Total</th>
@@ -76,9 +77,10 @@
               elseif ($status === 'shipped') { $statusClass = 'text-blue-500'; }
               elseif ($status === 'delivered') { $statusClass = 'text-green-500'; }
             ?>
-              <tr data-status="<?= $status ?>">
+              <tr data-status="<?= $status ?>" data-date="<?= htmlspecialchars($order['Order_Date']); ?>">
                 <td><input type="checkbox"></td>
                 <td><?= sprintf('%05d', $order['Order_ID']); ?></td>
+                <td><?= htmlspecialchars($order['Order_Date']); ?></td>
                 <td><?= htmlspecialchars($user['Name'] ?? 'User '.$order['User_ID']); ?></td>
                 <td><?= $itemCount; ?> item<?= $itemCount === 1 ? '' : 's'; ?></td>
                 <td>₱<?= number_format($total ?? 0, 2); ?></td>
@@ -95,17 +97,33 @@
 
   <!-- Sidebar Script -->
   <script>
+    let currentStatus = 'all';
+
     function filterOrders(status) {
+      currentStatus = status;
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const start = document.getElementById('startDate').value;
+      const end = document.getElementById('endDate').value;
       const rows = document.querySelectorAll('#orderTable tr');
       rows.forEach(row => {
         const rowStatus = row.dataset.status;
-        if (status === 'all' || rowStatus === status) {
+        const rowDate = row.dataset.date;
+        const statusMatch = currentStatus === 'all' || rowStatus === currentStatus;
+        const afterStart = !start || rowDate >= start;
+        const beforeEnd = !end || rowDate <= end;
+        if (statusMatch && afterStart && beforeEnd) {
           row.style.display = '';
         } else {
           row.style.display = 'none';
         }
       });
     }
+
+    document.getElementById('startDate').addEventListener('change', applyFilters);
+    document.getElementById('endDate').addEventListener('change', applyFilters);
   </script>
 </body>
 </html>
