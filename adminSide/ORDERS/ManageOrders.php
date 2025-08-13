@@ -85,7 +85,7 @@
                 <td><?= $itemCount; ?> item<?= $itemCount === 1 ? '' : 's'; ?></td>
                 <td>₱<?= number_format($total ?? 0, 2); ?></td>
                 <td class="<?= $statusClass ?> font-medium"><?= htmlspecialchars($order['Status']); ?></td>
-                <td class="text-blue-500 cursor-pointer">View</td>
+                <td><a href="OrderDetails.php?order_id=<?= $order['Order_ID']; ?>" class="text-blue-500 hover:underline">View</a></td>
               </tr>
             <?php endforeach; ?>
             </tbody>
