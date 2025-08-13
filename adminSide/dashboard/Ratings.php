@@ -1,3 +1,23 @@
+<?php
+require '../../PHP/db_connect.php';
+require '../../PHP/product_ratings_functions.php';
+
+function renderStars($rating) {
+    $full = floor($rating);
+    $half = ($rating - $full) >= 0.5;
+    $empty = 5 - $full - ($half ? 1 : 0);
+    return str_repeat('★', $full) . ($half ? '½' : '') . str_repeat('☆', $empty);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_rating_id'])) {
+    deleteProductRatingById($pdo, $_POST['delete_rating_id']);
+    header('Location: Ratings.php');
+    exit();
+}
+
+$ratings = getAllProductRatings($pdo);
+$activePage = 'ratings';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +29,7 @@
 </head>
   <body>
     <div class="flex h-screen overflow-hidden">
-      <?php
-      $activePage = 'ratings';
-      include '../sidebar.php';
-      ?>
+      <?php include '../sidebar.php'; ?>
       <main class="flex-1 overflow-y-auto">
         <div class="header-bar">
           <h1>Product Ratings</h1>
@@ -31,32 +48,29 @@
           </tr>
         </thead>
         <tbody>
+          <?php foreach ($ratings as $rating): ?>
           <tr>
-            <td>EGG PIE CARAMEL</td>
+            <td><?= htmlspecialchars($rating['Product_Name']) ?></td>
             <td>
-              <div class="stars">★★★★☆</div>
-              <small>4.2 / 5</small>
+              <div class="stars"><?= renderStars($rating['Average_Rating']) ?></div>
+              <small><?= htmlspecialchars($rating['Average_Rating']) ?> / 5</small>
             </td>
-            <td>15</td>
-            <td>Yummy</td>
-            <td><button class="btn-delete">Delete</button></td>
-          </tr>
-          <tr>
-            <td>PASTEL DELIGHT ROUND CAKE</td>
+            <td><?= htmlspecialchars($rating['Total_Review']) ?></td>
+            <td><?= htmlspecialchars($rating['Comments']) ?></td>
             <td>
-              <div class="stars">★★★½☆</div>
-              <small>3.4 / 5</small>
+              <form method="POST" onsubmit="return confirm('Delete rating for <?= htmlspecialchars($rating['Product_Name']) ?>?');">
+                <input type="hidden" name="delete_rating_id" value="<?= $rating['Rating_ID'] ?>">
+                <button type="submit" class="btn-delete">Delete</button>
+              </form>
             </td>
-            <td>9</td>
-            <td>wow yummy</td>
-            <td><button class="btn-delete">Delete</button></td>
           </tr>
+          <?php endforeach; ?>
         </tbody>
       </table>
     </div>
       </main>
     </div>
 
-  
+
 </body>
 </html>
